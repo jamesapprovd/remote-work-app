@@ -10,9 +10,9 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/work-journal" element={<WorkJournal />} />
-        <Route path="/white-flags" element={<WhiteFlags />} />
+        <Route path="/my-profile" element={<ProfilePage />} />
+        <Route path="/my-journal" element={<WorkJournal />} />
+        <Route path="/my-white-flags" element={<WhiteFlags />} />
       </Routes>
     </>
   );

@@ -8,16 +8,17 @@ const NavBar = () => {
         <nav>
           <ul className="flex justify-center">
             <li className="px-5 py-5">
-              <NavLink to="/">Main</NavLink>
+              <NavLink to="/my-profile">Profile</NavLink>
             </li>
             <li className="px-5 py-5">
-              <NavLink to="/profile">Profile</NavLink>
+              <NavLink to="/">Home</NavLink>
+            </li>
+
+            <li className="px-5 py-5">
+              <NavLink to="my-journal">myJournal</NavLink>
             </li>
             <li className="px-5 py-5">
-              <NavLink to="work-journal">Work Journal</NavLink>
-            </li>
-            <li className="px-5 py-5">
-              <NavLink to="/white-flags">White Flags</NavLink>
+              <NavLink to="/my-white-flags">myWhiteFlags</NavLink>
             </li>
           </ul>
         </nav>
