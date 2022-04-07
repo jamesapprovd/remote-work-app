@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import EmployeeColumn from "../components/EmployeeColumn";
 import JournalCard from "../components/JournalCard";
 import NavBar from "../components/NavBar";
 
 const Profile = () => {
+  const [id, setId] = useState(0);
+
   return (
     <>
       <div className="flex flex-row">
@@ -17,7 +19,7 @@ const Profile = () => {
           <div className="flex flex-row">
             <div className="bg-red-500 basis-1/2 m-1">
               <p>Work Journals</p>
-              <JournalCard />
+              <JournalCard id={id} setId={setId} />
             </div>
             <div className="bg-green-500 basis-1/2 m-1">Profile</div>
           </div>

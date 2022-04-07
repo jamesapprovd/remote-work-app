@@ -1,42 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import mockUsersData from "./mockUsersData.js";
-import NavBar from "./NavBar.js";
+import ViewJournalCard from "./ViewJournalCard.js";
 
-const JournalCard = () => {
-  let content = mockUsersData[0].workJournal.map((element) => {
-    return (
-      <>
-        <p>
-          {element.date}, {element.time}
-        </p>
-        <p>{element.title}</p>
-        <p>{element.content}</p>
-        {/* <h2>Comments</h2>
-        {element.comments.map((item) => {
-          return (
-            <>
-              <p>{item.username}</p>
-              <p>
-                {item.date}, {item.time}
-              </p>
-              <p>{item.comment}</p>
-            </>
-          );
-        })} */}
-        <button className="text-right">View</button>
-      </>
-    );
-  });
+const JournalCard = (props) => {
+  const [hasClickedView, setHasClickedView] = useState(false);
+
+  const handleViewClick = (event) => {
+    props.setId(event.target.parentNode.id);
+    setHasClickedView(true);
+  };
 
   return (
     <>
-      <div className="bg-white">
-        <div className="border border-black">
-          <h1>Work Journals</h1>
-          <div className="text-left border border-black">{content}</div>
+      {!hasClickedView ? (
+        <div className="bg-white">
+          <div className="border border-black">
+            <div className="text-left border border-black">
+              {mockUsersData[0].workJournal.map((element, index) => {
+                return (
+                  <div
+                    id={index}
+                    className="border border-blue-500 mx-2 my-2 px-1 py-1"
+                  >
+                    <p>
+                      {element.date}, {element.time}
+                    </p>
+                    <p>{element.title}</p>
+                    <p>{element.content}</p>
+                    <button className="float-right" onClick={handleViewClick}>
+                      View
+                    </button>
+                    <br />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="border border-black"></div>
         </div>
-        <div className="border border-black"></div>
-      </div>
+      ) : (
+        <>
+          <ViewJournalCard
+            id={props.id}
+            setHasClickedView={setHasClickedView}
+          />
+        </>
+      )}
     </>
   );
 };
