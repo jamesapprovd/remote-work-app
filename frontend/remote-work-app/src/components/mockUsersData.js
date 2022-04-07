@@ -5,9 +5,9 @@ const mockUsersData = [
     email: "james@remotr.com",
     password: "james123",
     admin: true,
-    img: "",
+    img: "https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png",
     position: "Manager",
-    status: "",
+    status: "Offline",
     interactionCount: 0,
     workJournal: [
       {
@@ -76,9 +76,9 @@ const mockUsersData = [
     email: "singhian@remotr.com",
     password: "singhian123",
     admin: false,
-    img: "",
+    img: "https://www.nomadfoods.com/wp-content/uploads/2018/08/placeholder-1-e1533569576673-960x960.png",
     position: "Junior Executive",
-    status: "",
+    status: "Away",
     interactionCount: 0,
     workJournal: [
       {
@@ -143,7 +143,5 @@ const mockUsersData = [
   },
   // {...}, {...} ...
 ];
-
 // whiteFlagsData = [];
-
 export default mockUsersData;
