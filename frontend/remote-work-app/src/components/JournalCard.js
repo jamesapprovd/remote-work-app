@@ -11,7 +11,7 @@ const JournalCard = () => {
         </p>
         <p>{element.title}</p>
         <p>{element.content}</p>
-        <h2>Comments</h2>
+        {/* <h2>Comments</h2>
         {element.comments.map((item) => {
           return (
             <>
@@ -22,7 +22,7 @@ const JournalCard = () => {
               <p>{item.comment}</p>
             </>
           );
-        })}
+        })} */}
         <button className="text-right">View</button>
       </>
     );
@@ -30,16 +30,12 @@ const JournalCard = () => {
 
   return (
     <>
-      <NavBar />
-      <div className="flex">
-        <div className="basis-1/5">Status</div>
-        <div className="basis-1/2 border-black">
+      <div className="bg-white">
+        <div className="border border-black">
           <h1>Work Journals</h1>
           <div className="text-left border border-black">{content}</div>
         </div>
-        <div className="basis-1/2 border border-black">
-          <h1>Profile</h1>
-        </div>
+        <div className="border border-black"></div>
       </div>
     </>
   );
