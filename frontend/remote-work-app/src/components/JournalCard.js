@@ -13,33 +13,28 @@ const JournalCard = (props) => {
   return (
     <>
       {!hasClickedView ? (
-        <div className="bg-white">
-          <div className="border border-black">
-            <div className="text-left border border-black">
-              {mockUsersData[0].workJournal.map((element, index) => {
-                return (
-                  <div
-                    id={index}
-                    className="border border-blue-500 mx-2 my-2 px-1 py-1"
-                  >
-                    <p>
-                      {element.date}, {element.time}
-                    </p>
-                    <p>{element.title}</p>
-                    <p>{element.content}</p>
-                    <p className="font-bold">
-                      Comments ({element.comments.length})
-                    </p>
-                    <button className="float-right" onClick={handleViewClick}>
-                      View
-                    </button>
-                    <br />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="border border-black"></div>
+        <div className="bg-white border border-black text-left">
+          {mockUsersData[0].workJournal.map((element, index) => {
+            return (
+              <div
+                id={index}
+                className="border border-blue-500 mx-2 my-2 px-1 py-1"
+              >
+                <p>
+                  {element.date}, {element.time}
+                </p>
+                <p>{element.title}</p>
+                <p>{element.content}</p>
+                <p className="font-bold">
+                  Comments ({element.comments.length})
+                </p>
+                <button className="float-right" onClick={handleViewClick}>
+                  View
+                </button>
+                <br />
+              </div>
+            );
+          })}
         </div>
       ) : (
         <>
