@@ -34,7 +34,7 @@ const mockUsersData = [
       {
         date: "7/4/2022",
         time: "930",
-        title: "Puntuality",
+        title: "Punctuality",
         content: "Reached campus on time and got my coffee!",
         private: false,
         comments: [
