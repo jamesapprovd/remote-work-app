@@ -27,6 +27,9 @@ const JournalCard = (props) => {
                     </p>
                     <p>{element.title}</p>
                     <p>{element.content}</p>
+                    <p className="font-bold">
+                      Comments ({element.comments.length})
+                    </p>
                     <button className="float-right" onClick={handleViewClick}>
                       View
                     </button>
