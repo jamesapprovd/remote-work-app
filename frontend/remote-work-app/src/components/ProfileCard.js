@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import InputBox from "./InputBox";
 import mockUsersData from "./mockUsersData.js";
+import { selectUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
 
 const ProfileCard = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  let profileImage = mockUsersData[0].img;
-  let name = mockUsersData[0].username;
-  let position = mockUsersData[0].position;
-  let interactionCount = mockUsersData[0].interactionCount;
+  const user = useSelector(selectUser);
+
+  let profileImage = user.img;
+  let name = user.username;
+  let position = user.position;
+  let interactionCount = user.interactionCount;
 
   // const postNewJournal = (event) => {
   //   event.preventDefault();

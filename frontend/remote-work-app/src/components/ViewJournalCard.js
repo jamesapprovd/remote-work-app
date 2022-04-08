@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import mockUsersData from "./mockUsersData.js";
 import { v4 as uuidv4 } from "uuid";
 import EditForm from "./EditForm.js";
+import { selectUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
 
 const ViewJournalCard = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [hasEdit, setHasEdit] = useState(false);
 
-  let journalData = mockUsersData[0].workJournal[props.index];
+  const user = useSelector(selectUser);
+
+  let journalData = user.workJournal[props.index];
 
   // this changes the view from individual journal to all journals
   const handleClose = () => {

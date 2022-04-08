@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import mockUsersData from "./mockUsersData.js";
 import ViewJournalCard from "./ViewJournalCard.js";
 import { v4 as uuidv4 } from "uuid";
+import { selectUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
 
 const JournalCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
+
+  const user = useSelector(selectUser);
 
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id);
@@ -24,7 +28,7 @@ const JournalCard = (props) => {
     <>
       {!hasViewed ? (
         <div className="bg-white border border-black text-left">
-          {mockUsersData[0].workJournal.map((element, index) => {
+          {user.workJournal.map((element, index) => {
             return (
               <div
                 id={index}
