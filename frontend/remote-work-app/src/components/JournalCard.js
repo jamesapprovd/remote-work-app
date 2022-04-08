@@ -11,6 +11,15 @@ const JournalCard = (props) => {
     setHasViewed(true);
   };
 
+  // const handleDelete = () => {
+  //   event.preventDefault();
+  //   axios.post(`http://127.0.0.1:5001/journals/delete`, {
+  //     title: title,
+  //     description: description,
+  //   });
+  // };
+  // not sure how the axios syntax work, haven't installed axios yet
+
   return (
     <>
       {!hasViewed ? (
@@ -33,6 +42,12 @@ const JournalCard = (props) => {
                 <button className="float-right" onClick={handleView}>
                   View
                 </button>
+                <button
+                  className="float-right mr-2"
+                  // onClick={handleDelete}
+                >
+                  Delete
+                </button>
                 <br />
               </div>
             );
@@ -40,7 +55,11 @@ const JournalCard = (props) => {
         </div>
       ) : (
         <>
-          <ViewJournalCard index={props.index} setHasViewed={setHasViewed} />
+          <ViewJournalCard
+            index={props.index}
+            setIndex={props.setIndex}
+            setHasViewed={setHasViewed}
+          />
         </>
       )}
     </>

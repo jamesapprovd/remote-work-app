@@ -20,7 +20,7 @@ const NavBar = () => {
         <nav className="flex flex-row justify-evenly">
           <ul className="flex justify-center">
             <li className="p-5">
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/main">Home</NavLink>
             </li>
             <li className="p-5">
               <NavLink to="/my-profile">myJournal</NavLink>
