@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const InputBox = (props) => {
   return (
@@ -16,7 +16,7 @@ const InputBox = (props) => {
           placeholder="description"
         />
         <button type="submit" className="border m-2">
-          Submit
+          {props.text}
         </button>
       </div>
     </form>

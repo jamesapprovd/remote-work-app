@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EmployeeColumn from "../components/EmployeeColumn";
 import JournalCard from "../components/JournalCard";
 import NavBar from "../components/NavBar";
+import ProfileCard from "../components/ProfileCard";
 
 const Profile = () => {
   const [index, setIndex] = useState(0);
@@ -21,7 +22,10 @@ const Profile = () => {
               <p>Work Journals</p>
               <JournalCard index={index} setIndex={setIndex} />
             </div>
-            <div className="bg-green-500 basis-1/2 m-1">Profile</div>
+            <div className="bg-green-500 basis-1/2 m-1">
+              Profile
+              <ProfileCard />
+            </div>
           </div>
         </div>
       </div>
