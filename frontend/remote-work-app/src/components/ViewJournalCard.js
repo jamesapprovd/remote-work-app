@@ -1,11 +1,12 @@
 import React from "react";
 import mockUsersData from "./mockUsersData.js";
+import { v4 as uuidv4 } from "uuid";
 
 const ViewJournalCard = (props) => {
-  let journalData = mockUsersData[0].workJournal[props.id];
+  let journalData = mockUsersData[0].workJournal[props.index];
 
   const handleClose = () => {
-    props.setHasClickedView(false);
+    props.setHasViewed(false);
   };
   return (
     <>
@@ -20,14 +21,14 @@ const ViewJournalCard = (props) => {
           <p className="font-bold">Comments ({journalData.comments.length})</p>
           {journalData.comments.map((element) => {
             return (
-              <>
+              <div key={uuidv4()}>
                 <p>
                   date: {element.date}, time: {element.time}
                 </p>
                 <p>username: {element.username}</p>
                 <p>comment: {element.comment}</p>
                 <br />
-              </>
+              </div>
             );
           })}
           <button className="float-right px-2 mx-2" onClick={handleClose}>

@@ -4,7 +4,7 @@ import JournalCard from "../components/JournalCard";
 import NavBar from "../components/NavBar";
 
 const Profile = () => {
-  const [id, setId] = useState(0);
+  const [index, setIndex] = useState(0);
 
   return (
     <>
@@ -19,7 +19,7 @@ const Profile = () => {
           <div className="flex flex-row">
             <div className="bg-red-500 basis-1/2 m-1">
               <p>Work Journals</p>
-              <JournalCard id={id} setId={setId} />
+              <JournalCard index={index} setIndex={setIndex} />
             </div>
             <div className="bg-green-500 basis-1/2 m-1">Profile</div>
           </div>

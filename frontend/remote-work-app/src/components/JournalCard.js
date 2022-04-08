@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import mockUsersData from "./mockUsersData.js";
 import ViewJournalCard from "./ViewJournalCard.js";
+import { v4 as uuidv4 } from "uuid";
 
 const JournalCard = (props) => {
-  const [hasClickedView, setHasClickedView] = useState(false);
+  const [hasViewed, setHasViewed] = useState(false);
 
-  const handleViewClick = (event) => {
-    props.setId(event.target.parentNode.id);
-    setHasClickedView(true);
+  const handleView = (event) => {
+    props.setIndex(event.target.parentNode.id);
+    setHasViewed(true);
   };
 
   return (
     <>
-      {!hasClickedView ? (
+      {!hasViewed ? (
         <div className="bg-white border border-black text-left">
           {mockUsersData[0].workJournal.map((element, index) => {
             return (
               <div
                 id={index}
+                key={uuidv4()}
                 className="border border-blue-500 mx-2 my-2 px-1 py-1"
               >
                 <p>
@@ -28,7 +30,7 @@ const JournalCard = (props) => {
                 <p className="font-bold">
                   Comments ({element.comments.length})
                 </p>
-                <button className="float-right" onClick={handleViewClick}>
+                <button className="float-right" onClick={handleView}>
                   View
                 </button>
                 <br />
@@ -38,10 +40,7 @@ const JournalCard = (props) => {
         </div>
       ) : (
         <>
-          <ViewJournalCard
-            id={props.id}
-            setHasClickedView={setHasClickedView}
-          />
+          <ViewJournalCard index={props.index} setHasViewed={setHasViewed} />
         </>
       )}
     </>
