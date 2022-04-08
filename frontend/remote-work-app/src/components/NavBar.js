@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { logout } from "../redux/userSlice";
+import { LOGOUT } from "../redux/userSlice";
 
 // added a log out button to the nav bar
 
@@ -11,7 +11,7 @@ const NavBar = () => {
 
   const onClickLogout = (e) => {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(LOGOUT());
     navigate("/");
   };
   return (
@@ -20,7 +20,7 @@ const NavBar = () => {
         <nav className="flex flex-row justify-evenly">
           <ul className="flex justify-center">
             <li className="p-5">
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/main">Home</NavLink>
             </li>
             <li className="p-5">
               <NavLink to="/my-profile">myJournal</NavLink>
