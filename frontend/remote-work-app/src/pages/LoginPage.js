@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import userSlice, { login, selectUser } from "../redux/userSlice";
+import { login } from "../redux/userSlice";
 
 const LoginPage = () => {
+  //basic state for the login form.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //handling the changes to the value
   const onChangeEmail = (e) => setEmail(e.target.value);
   const onChangePassword = (e) => setPassword(e.target.value);
 
+  //redux stuff
   const dispatch = useDispatch();
+  //routerdom navigate fucntion (just a manual redirect)
   const navigate = useNavigate();
 
   const onSubmitLogin = (e) => {
@@ -20,15 +24,18 @@ const LoginPage = () => {
 
     dispatch(
       login({
+        //** basically the params what will be stored under user object in redux store*/
         email: email,
         password: password,
         loggedIn: true,
       })
     );
+
+    /** probably have to insert some form of auth function here to compare log in details to the existing data before redirecting to main page */
+
+    //redirects to main page
     navigate("/main");
   };
-  // const user = useSelector(selectUser);
-
   return (
     <>
       <form onSubmit={onSubmitLogin}>

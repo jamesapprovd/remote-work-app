@@ -1,19 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../redux/userSlice";
+
+// added a log out button to the nav bar
 
 const NavBar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClickLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    navigate("/");
   };
   return (
     <>
       <header>
-        <nav>
+        <nav className="flex flex-row justify-evenly">
           <ul className="flex justify-center">
             <li className="p-5">
               <NavLink to="/">Home</NavLink>
@@ -24,9 +28,8 @@ const NavBar = () => {
             <li className="p-5">
               <NavLink to="/my-white-flags">myWhiteFlags</NavLink>
             </li>
-            <li className="p-5">Log Out</li>
           </ul>
-          <button className="border m-2" onClick={onClickLogout}>
+          <button className="border h-[50%] m-4 p-1" onClick={onClickLogout}>
             Log out
           </button>
         </nav>
