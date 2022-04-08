@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
-const connectDB = async (uri) => {
+const db = "mongodb://localhost:27017/remotr"; // KIV - depending on uri of DB
+
+const connectDB = async () => {
   try {
-    await mongoose.connect(uri);
+    await mongoose.connect(db);
     console.log("DB Connected");
   } catch (error) {
     console.log("DB connection error");

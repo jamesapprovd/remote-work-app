@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 
 const Profile = () => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(null);
 
   return (
     <>

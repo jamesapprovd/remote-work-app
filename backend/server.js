@@ -10,11 +10,23 @@ const app = express();
 
 require("dotenv").config();
 
+app.get("/", (req, res) => {
+  res.send("Remotr Welcome and Login page");
+});
+
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI,
   collection: "sessions",
 });
 
+//Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+connectDB(process.env.MONGODB_URI);
+
+// Creating sessions
 app.use(
   session({
     secret: process.env.SECRET,
@@ -24,12 +36,6 @@ app.use(
     store: store,
   })
 );
-
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-connectDB(process.env.MONGODB_URI);
 
 //this /users is cumulative - eg users/create, users/login, /users/delete
 app.use("/users", users);

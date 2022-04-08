@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import InputBox from "./InputBox";
 import mockUsersData from "./mockUsersData.js";
 
 const ProfileCard = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
   let profileImage = mockUsersData[0].img;
   let name = mockUsersData[0].username;
   let position = mockUsersData[0].position;
   let interactionCount = mockUsersData[0].interactionCount;
 
-  //   const postNewJournal = (event) => {
-  //     event.preventDefault();
-  //     axios.post(`http://127.0.0.1:5001/profile/new`, {
-  //       title: "test",
-  //       description: "testing",
-  //     });
-  //   };
+  // const postNewJournal = (event) => {
+  //   event.preventDefault();
+  //   axios.post(`http://127.0.0.1:5001/journals/new`, {
+  //     title: title,
+  //     description: description,
+  //   });
+  // };
   // not sure how the axios syntax work, haven't installed axios yet
 
   return (
@@ -30,7 +33,12 @@ const ProfileCard = () => {
           <p>Interaction Count: {interactionCount}</p>
         </div>
       </div>
-      <InputBox text="Post New Journal" />
+      <InputBox
+        text="Post New Journal"
+        setTitle={setTitle}
+        setDescription={setDescription}
+        // onSubmit={postNewJournal}
+      />
     </>
   );
 };
