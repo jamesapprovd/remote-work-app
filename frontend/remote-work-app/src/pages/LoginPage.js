@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../redux/userSlice";
+import { LOGIN } from "../redux/userSlice";
+import { selectUsersData, STORE_DATA } from "../redux/usersDataSlice";
+import axios from "axios";
+import { current } from "@reduxjs/toolkit";
 
 const LoginPage = () => {
   //basic state for the login form.
@@ -16,25 +19,34 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   //routerdom navigate fucntion (just a manual redirect)
   const navigate = useNavigate();
+  const users = useSelector(selectUsersData);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/user").then((res) => {
+      console.log(res);
+      dispatch(STORE_DATA([...res.data]));
+      return;
+    });
+  }, []);
 
   const onSubmitLogin = (e) => {
     e.preventDefault();
-    console.log(email, "email");
-    console.log(password, "password");
-
-    dispatch(
-      login({
-        //** basically the params what will be stored under user object in redux store*/
-        email: email,
-        password: password,
-        loggedIn: true,
-      })
-    );
-
-    /** probably have to insert some form of auth function here to compare log in details to the existing data before redirecting to main page */
-
-    //redirects to main page
-    navigate("/main");
+    const currentUser = users.find((user) => {
+      if (user.email === email && user.password === password) {
+        return user;
+      }
+    });
+    if (!currentUser) {
+      alert("Log in failed, invalid credentials");
+    } else {
+      dispatch(
+        LOGIN({
+          ...currentUser,
+        })
+      );
+      console.log("hi3");
+      navigate("/main");
+    }
   };
   return (
     <>
@@ -62,8 +74,6 @@ const LoginPage = () => {
           </button>
         </div>
       </form>
-      <h2>{email}</h2>
-      <h2>{password}</h2>
     </>
   );
 };
