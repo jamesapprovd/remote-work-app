@@ -16,7 +16,7 @@ const WhiteFlags = () => {
           <NavBar />
           <div className="flex flex-row">
             <div className="bg-red-500 basis-1/2 m-1">
-              <InputBox />
+              <InputBox text="Post White Flag" />
             </div>
             <div className="bg-green-500 basis-1/2 m-1 h-screen">
               White Flags
