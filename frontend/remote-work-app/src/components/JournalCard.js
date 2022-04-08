@@ -1,46 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import mockUsersData from "./mockUsersData.js";
-import NavBar from "./NavBar.js";
+import ViewJournalCard from "./ViewJournalCard.js";
+import { v4 as uuidv4 } from "uuid";
 
-const JournalCard = () => {
-  let content = mockUsersData[0].workJournal.map((element) => {
-    return (
-      <>
-        <p>
-          {element.date}, {element.time}
-        </p>
-        <p>{element.title}</p>
-        <p>{element.content}</p>
-        <h2>Comments</h2>
-        {element.comments.map((item) => {
-          return (
-            <>
-              <p>{item.username}</p>
-              <p>
-                {item.date}, {item.time}
-              </p>
-              <p>{item.comment}</p>
-            </>
-          );
-        })}
-        <button className="text-right">View</button>
-      </>
-    );
-  });
+const JournalCard = (props) => {
+  const [hasViewed, setHasViewed] = useState(false);
+
+  const handleView = (event) => {
+    props.setIndex(event.target.parentNode.id);
+    setHasViewed(true);
+  };
 
   return (
     <>
-      <NavBar />
-      <div className="flex">
-        <div className="basis-1/5">Status</div>
-        <div className="basis-1/2 border-black">
-          <h1>Work Journals</h1>
-          <div className="text-left border border-black">{content}</div>
+      {!hasViewed ? (
+        <div className="bg-white border border-black text-left">
+          {mockUsersData[0].workJournal.map((element, index) => {
+            return (
+              <div
+                id={index}
+                key={uuidv4()}
+                className="border border-blue-500 mx-2 my-2 px-1 py-1"
+              >
+                <p>
+                  {element.date}, {element.time}
+                </p>
+                <p>{element.title}</p>
+                <p>{element.content}</p>
+                <p className="font-bold">
+                  Comments ({element.comments.length})
+                </p>
+                <button className="float-right" onClick={handleView}>
+                  View
+                </button>
+                <br />
+              </div>
+            );
+          })}
         </div>
-        <div className="basis-1/2 border border-black">
-          <h1>Profile</h1>
-        </div>
-      </div>
+      ) : (
+        <>
+          <ViewJournalCard index={props.index} setHasViewed={setHasViewed} />
+        </>
+      )}
     </>
   );
 };
