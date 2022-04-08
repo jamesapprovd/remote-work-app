@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { LOGIN } from "../redux/userSlice";
 import { selectUsersData, STORE_DATA } from "../redux/usersDataSlice";
 import axios from "axios";
-import { current } from "@reduxjs/toolkit";
+// import { current } from "@reduxjs/toolkit";
+import logo from "../images/Logo.png";
 
 const LoginPage = () => {
   //basic state for the login form.
@@ -50,30 +51,39 @@ const LoginPage = () => {
   };
   return (
     <>
-      <form onSubmit={onSubmitLogin}>
-        <h1>RemotR</h1>
-        <div className="flex flex-col w-auto">
-          <label>Email:</label>
-          <input
-            className="flex basis-1/6 m-2 text-center"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={onChangeEmail}
-          />
-          <label>Password:</label>
-          <input
-            className="flex basis-1/6 m-2 text-center"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={onChangePassword}
-          />
-          <button type="submit" className="border m-2">
-            Log in
-          </button>
+      <div className="h-screen bg-lilac">
+        <div className="flex justify-around">
+          <div className="flex flex-col w-[50%] m-[10%] text-purple">
+            <img src={logo} alt="REMOTR" />
+            <form className="self-center w-[300px]" onSubmit={onSubmitLogin}>
+              <div className="flex flex-col w-auto">
+                <label className="text-left">Email</label>
+                <input
+                  className="border-2 border-purple rounded-md flex basis-1/6 my-2 text-center focus:outline-green"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={onChangeEmail}
+                />
+                <label className="text-left">Password:</label>
+                <input
+                  className="border-2 border-purple rounded-md flex basis-1/6 my-2 text-center focus:outline-green"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={onChangePassword}
+                />
+                <button
+                  type="submit"
+                  className="border-2 border-purple rounded-md w-20 my-2 self-end hover:bg-green hover:text-black"
+                >
+                  Log in
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
+      </div>
     </>
   );
 };

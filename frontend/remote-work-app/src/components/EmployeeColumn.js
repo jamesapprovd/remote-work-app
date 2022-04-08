@@ -1,15 +1,22 @@
 import React from "react";
 import EmployeeCard from "./EmployeeCard";
-import mockUsersData from "./mockUsersData";
+import { useSelector } from "react-redux";
+import { selectUsersData } from "../redux/usersDataSlice";
 
 const EmployeeColumn = () => {
-  // console.log("name", mockUsersData[0].username);
-  // console.log("position", mockUsersData[0].position);
-  // console.log("status", mockUsersData[0].status);
+  const users = useSelector(selectUsersData);
+  console.log(users);
+
   return (
     <div className="flex flex-col">
-      {mockUsersData.map((user, index) => {
-        return <EmployeeCard user={user} />;
+      {users.map((user, index) => {
+        return (
+          <EmployeeCard
+            username={user.username}
+            position={user.position}
+            status={user.status}
+          />
+        );
       })}
     </div>
   );
