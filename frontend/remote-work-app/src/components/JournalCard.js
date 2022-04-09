@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import mockUsersData from "./mockUsersData.js";
 import ViewJournalCard from "./ViewJournalCard.js";
 import { v4 as uuidv4 } from "uuid";
+import { selectUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
 
 const JournalCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
+
+  const user = useSelector(selectUser);
 
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id);
@@ -13,7 +17,7 @@ const JournalCard = (props) => {
 
   // const handleDelete = () => {
   //   event.preventDefault();
-  //   axios.post(`http://127.0.0.1:5001/journals/delete`, {
+  //   axios.post(`http://127.0.0.1:5001/journals/delete` {
   //     title: title,
   //     description: description,
   //   });
@@ -23,27 +27,27 @@ const JournalCard = (props) => {
   return (
     <>
       {!hasViewed ? (
-        <div className="bg-white border border-black text-left">
-          {mockUsersData[0].workJournal.map((element, index) => {
+        <div className="text-left">
+          {user.workJournal.map((element, index) => {
             return (
               <div
                 id={index}
                 key={uuidv4()}
-                className="border border-blue-500 mx-2 my-2 px-1 py-1"
+                className="bg-white border border-blue-500 mx-2 my-2 px-1 py-2"
               >
                 <p>
                   {element.date}, {element.time}
                 </p>
-                <p>{element.title}</p>
+                <p className="font-bold">Title: {element.title}</p>
                 <p>{element.content}</p>
                 <p className="font-bold">
                   Comments ({element.comments.length})
                 </p>
-                <button className="float-right" onClick={handleView}>
+                <button className="float-right px-1" onClick={handleView}>
                   View
                 </button>
                 <button
-                  className="float-right mr-2"
+                  className="float-right mr-2 px-1"
                   // onClick={handleDelete}
                 >
                   Delete
