@@ -44,12 +44,12 @@ const ViewJournalCard = (props) => {
           onSubmit={handleUpdate}
         />
       ) : (
-        <div className="bg-white border border-black text-left">
-          <div className="border border-blue-500 mx-2 my-2 px-1 py-1">
+        <div className="bg-white text-left">
+          <div className="border border-blue-500 mx-2 my-2 px-1 py-8">
             <p>
               {journalData.date}, {journalData.time}
             </p>
-            <p>{journalData.title}</p>
+            <p className="font-bold">Title: {journalData.title}</p>
             <p>{journalData.content}</p>
             <br />
             <p className="font-bold">
@@ -58,19 +58,19 @@ const ViewJournalCard = (props) => {
             {journalData.comments.map((element) => {
               return (
                 <div key={uuidv4()}>
+                  <p className="font-bold">{element.username}</p>
+                  <p>{element.comment}</p>
                   <p>
-                    date: {element.date}, time: {element.time}
+                    {element.date}, {element.time}
                   </p>
-                  <p>username: {element.username}</p>
-                  <p>comment: {element.comment}</p>
                   <br />
                 </div>
               );
             })}
-            <button className="float-right px-2 mx-2" onClick={handleClose}>
+            <button className="float-right px-1" onClick={handleClose}>
               Close
             </button>
-            <button className="float-right px-2 mx-2" onClick={handleEdit}>
+            <button className="float-right px-1 mr-2" onClick={handleEdit}>
               Edit
             </button>
           </div>

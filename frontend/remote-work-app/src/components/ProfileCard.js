@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import InputBox from "./InputBox";
-import mockUsersData from "./mockUsersData.js";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 
