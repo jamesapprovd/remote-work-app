@@ -477,4 +477,4 @@ const seedUsersData = [
   },
 ];
 
-export default seedUsersData;
+module.exports = seedUsersData;
