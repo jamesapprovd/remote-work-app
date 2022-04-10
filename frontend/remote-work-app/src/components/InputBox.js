@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const InputBox = (props) => {
-  const handleTitleChange = (event) => props.setTitle(event.target.value);
-  const handleDescriptionChange = (event) =>
-    props.setDescription(event.target.value);
+  const onChangeTitle = (event) => {
+    props.setJournal((prevState) => {
+      return { ...prevState, title: event.target.value };
+    });
+  };
+  const onChangeContent = (event) => {
+    props.setJournal((prevState) => {
+      return { ...prevState, description: event.target.value };
+    });
+  };
 
   return (
     <form onSubmit={props.onSubmit}>
@@ -13,13 +20,15 @@ const InputBox = (props) => {
           className="flex basis-1/6 m-2 text-center"
           type="text"
           placeholder="title"
-          onChange={handleTitleChange}
+          onChange={onChangeTitle}
+          value={props.title}
         />
         <textarea
           className="border border-black m-2 text-center"
           rows="5"
           placeholder="description"
-          onChange={handleDescriptionChange}
+          onChange={onChangeContent}
+          value={props.content}
         />
         <button type="submit" className="border m-2">
           {props.text}
