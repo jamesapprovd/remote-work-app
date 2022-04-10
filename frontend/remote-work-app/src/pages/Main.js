@@ -8,7 +8,7 @@ import logo from "../images/Logo.png";
 
 const Main = () => {
   const user = useSelector(selectUser);
-  console.log("mainpage", user.img);
+  // console.log("mainpage", user.img);
   return (
     <>
       <div className="flex flex-row">
