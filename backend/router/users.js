@@ -3,12 +3,20 @@ const bcrypt = require("bcrypt");
 const Users = require("../models/Users");
 const router = express.Router();
 const auth = require("../middleware/auth");
+const { db } = require("../models/Users");
 
 const usernameOrPasswordError = {
   status: "error",
   message: "username or password error",
 };
+//
 
+router.get("/storeddata", async (req, res) => {
+  const allData = await Users.find({}, {});
+  res.json(allData);
+});
+
+//
 router.post("/create", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 12);
