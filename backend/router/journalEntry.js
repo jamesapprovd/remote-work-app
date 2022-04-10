@@ -13,10 +13,25 @@ journalRouter.post("/new", async (req, res) => {
   // finds user by id (based on current logged in user )
   const userUpdate = await Users.updateOne(
     { _id: req.session.userId },
-    { $push: { workJournal: req.body } }
+    { $push: { workJournal: req.body, $sort: { date: -1 } } }
+    //to sort new entries in decending order based on date
   );
   res.json("Workjournal updated");
 });
+
+//User - All LOGGED IN user journal views (Public and Private)
+journalRouter.get("/:title/all", async (req, res) => {
+  const allJournalTitles = await Users.find({}, { workJournal: 1 });
+  res.json(allJournalTitles);
+});
+
+//User - Only view Public journal views  // not working - why am i viewing everyone's private journals??
+// journalRouter.get("/public", async (req, res) => {
+//   const allJournalTitles = await Users.find({
+//     workJournal: { $elemMatch: { private: false } },
+//   });
+//   res.json(allJournalTitles);
+// });
 
 //UPDATE JOURNAL ENTRY (WILL REPLACE ALL JOURNALS - USE WITH CAUTION!!!)
 journalRouter.put("/new", async (req, res) => {
@@ -28,15 +43,15 @@ journalRouter.put("/new", async (req, res) => {
   res.json("Workjournal updated");
 });
 
-//CREATE A DELETE ROUTE
-// journalRouter.delete("users/journal/:id", (req, res) => {
-//   res.send("deleting....");
-// });
-
 //DELETE A JOURNAL ENTRY
 
-// app.delete("users/journal/:id", (req, res) => {
-//   Users.workJournal.findOneAndUpdate({}, req.body)
-// }
+journalRouter.delete("/delete", async (req, res) => {
+  const deleteJournalEntry = await Users.updateOne(
+    { _id: req.session.userId },
+    { $pull: { workJournal: req.body } }
+  );
+  console.log(deleteJournalEntry);
+  res.json("Workjournal entry deleted");
+});
 
 module.exports = journalRouter;
