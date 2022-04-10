@@ -9,14 +9,12 @@ const usernameOrPasswordError = {
   status: "error",
   message: "username or password error",
 };
-//
 
 router.get("/storeddata", async (req, res) => {
   const allData = await Users.find({}, {});
   res.json(allData);
 });
 
-//
 router.post("/create", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 12);
@@ -41,7 +39,7 @@ router.post("/login", async (req, res) => {
   const result = await bcrypt.compare(password, user.password);
   if (result) {
     req.session.currentUser = user.username;
-    req.session.userId = user.id;
+    req.session.userId = user.userId;
     res.send({ status: "ok", message: "user logged in" });
   } else {
     req.session.currentUser = null;
@@ -50,6 +48,16 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//auth for main page not working yet
+router.get("/main", auth, (req, res) => {
+  if (req.session.currentUser) {
+    res.status(200).json({ status: "ok", message: "main" });
+  } else {
+    res.status(403).json({ status: "error", message: "please login" });
+  }
+});
+
+//log out unable to figure out why its not deleting sessions
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {
     res.json({ status: "ok", message: "logged out" });
@@ -57,13 +65,15 @@ router.get("/logout", (req, res) => {
 });
 
 //authentication
-router.get("/profile", auth, (req, res) => {
-  if (req.session.currentUser) {
-    res.json({ status: "ok", message: "profile" });
-  } else {
-    res.status(403).json({ status: "error", message: "please login" });
-  }
-});
+// router.get("/profile", auth, (req, res) => {
+//   if (req.session.currentUser) {
+//     res.json({ status: "ok", message: "profile" });
+//   } else {
+//     res.status(403).json({ status: "error", message: "please login" });
+//   }
+// });
+
+//^ i think this is not applicable?
 
 router.delete("/remove", async (req, res) => {
   const { username } = req.body;

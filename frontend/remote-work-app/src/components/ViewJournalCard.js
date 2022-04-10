@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import mockUsersData from "./mockUsersData.js";
 import { v4 as uuidv4 } from "uuid";
 import EditForm from "./EditForm.js";
 import { selectUser } from "../redux/userSlice";

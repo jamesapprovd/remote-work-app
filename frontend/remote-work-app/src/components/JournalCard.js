@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import mockUsersData from "./mockUsersData.js";
 import ViewJournalCard from "./ViewJournalCard.js";
 import { v4 as uuidv4 } from "uuid";
 import { selectUser } from "../redux/userSlice";

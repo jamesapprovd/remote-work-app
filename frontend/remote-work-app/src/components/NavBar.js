@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -13,8 +14,17 @@ const NavBar = () => {
 
   const onClickLogout = (e) => {
     e.preventDefault();
-    dispatch(LOGOUT());
-    navigate("/");
+    console.log("hi");
+    axios.get("http://localhost:5001/users/logout").then((res) => {
+      console.log("hi2");
+      if (res.data.status === "ok") {
+        console.log("hi3", res.data);
+        dispatch(LOGOUT());
+        navigate("/");
+      }
+    });
+    // dispatch(LOGOUT());
+    // navigate("/");
   };
   return (
     <>
