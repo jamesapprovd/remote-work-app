@@ -4,6 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 
+const buttonStyle =
+  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
+
 const JournalCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
 
@@ -32,26 +35,27 @@ const JournalCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className="bg-white border border-blue-500 mx-2 my-2 px-1 py-2"
+                className=" flex flex-col shadow-md shadow-purple border border-lavender rounded-lg m-2 p-2"
               >
-                <p>
+                <p className="text-sm">
                   {element.date}, {element.time}
                 </p>
-                <p className="font-bold">Title: {element.title}</p>
-                <p>{element.content}</p>
-                <p className="font-bold">
+                <p className="font-bold border-b">{element.title}</p>
+                <p className="text-sm">{element.content}</p>
+                <p className="font-bold text-[13px] border-y border-lavender">
                   Comments ({element.comments.length})
                 </p>
-                <button className="float-right px-1" onClick={handleView}>
-                  View
-                </button>
-                <button
-                  className="float-right mr-2 px-1"
-                  // onClick={handleDelete}
-                >
-                  Delete
-                </button>
-                <br />
+                <div className="flex flex-row-reverse" id={index}>
+                  <button className={buttonStyle} onClick={handleView}>
+                    View
+                  </button>
+                  <button
+                    className={buttonStyle}
+                    // onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             );
           })}
