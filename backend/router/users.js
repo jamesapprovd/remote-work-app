@@ -30,8 +30,8 @@ router.post("/create", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await Users.findOne({ username: req.body.username });
+  const { email, password } = req.body;
+  const user = await Users.findOne({ email: req.body.email });
 
   if (user === null) {
     console.log("user null");

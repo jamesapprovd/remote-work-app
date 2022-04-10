@@ -23,7 +23,7 @@ const LoginPage = () => {
   const users = useSelector(selectUsersData);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/user").then((res) => {
+    axios.get("http://localhost:5001/users/storeddata").then((res) => {
       console.log(res);
       dispatch(STORE_DATA([...res.data]));
       return;
@@ -32,23 +32,26 @@ const LoginPage = () => {
 
   const onSubmitLogin = (e) => {
     e.preventDefault();
-    const currentUser = users.find((user) => {
-      if (user.email === email && user.password === password) {
-        return user;
-      }
-    });
-    if (!currentUser) {
-      alert("Log in failed, invalid credentials");
-    } else {
-      dispatch(
-        LOGIN({
-          ...currentUser,
-        })
-      );
-      console.log("hi3");
-      navigate("/main");
-    }
+    axios
+      .post("http://localhost:5001/users/login", { email, password })
+      .then((res) => {
+        if (res.data.status === "ok") {
+          const currentUser = users.find((user) => {
+            if (user.email === email) {
+              return user;
+            }
+          });
+          dispatch(
+            LOGIN({
+              ...currentUser,
+            })
+          );
+          navigate("/main");
+        }
+      })
+      .catch((err) => alert("Log in failed, invalid credentials", err));
   };
+
   return (
     <>
       <div className="h-screen bg-lilac">
