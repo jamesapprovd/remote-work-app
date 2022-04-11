@@ -33,8 +33,7 @@ const ProfileCard = () => {
 
     axios
       .post(`http://127.0.0.1:5001/workJournal/new`, {
-        title,
-        description,
+        journal,
       })
       .then((res) => {
         console.log(res.data);
@@ -80,8 +79,9 @@ const ProfileCard = () => {
       </div>
       <InputBox
         text="Post New Journal"
-        setTitle={setTitle}
-        setDescription={setDescription}
+        title={journal.title}
+        content={journal.content}
+        setJournal={setJournal}
         onSubmit={onSubmitJournal}
       />
     </>

@@ -26,8 +26,12 @@ const ViewJournalCard = (props) => {
   // this shows view for edit with default value
   const handleEdit = (event) => {
     event.preventDefault();
-    setTitle(journalData.title);
-    setDescription(journalData.content);
+    setJournal((prevState) => {
+      return { ...prevState, title: journal.title };
+    });
+    setJournal((prevState) => {
+      return { ...prevState, content: journal.content };
+    });
     setHasEdit(true);
   };
 
@@ -42,7 +46,7 @@ const ViewJournalCard = (props) => {
       {hasEdit ? (
         <EditForm
           title={journal.title}
-          content={journal.description}
+          content={journal.content}
           setJournal={setJournal}
           onSubmit={handleUpdate}
         />
