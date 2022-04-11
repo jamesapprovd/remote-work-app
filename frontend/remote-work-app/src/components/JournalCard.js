@@ -3,6 +3,7 @@ import ViewJournalCard from "./ViewJournalCard.js";
 import { v4 as uuidv4 } from "uuid";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
@@ -17,14 +18,24 @@ const JournalCard = (props) => {
     setHasViewed(true);
   };
 
-  // const handleDelete = () => {
-  //   event.preventDefault();
-  //   axios.post(`http://127.0.0.1:5001/journals/delete` {
-  //     title: title,
-  //     description: description,
-  //   });
-  // };
-  // not sure how the axios syntax work, haven't installed axios yet
+  const handleDelete = (event) => {
+    event.preventDefault();
+    let userId = user.userId;
+    let journalId =
+      user.workJournal[event.target.parentNode.parentNode.id].journalId;
+    axios
+      .post(`http://127.0.0.1:5001/workJournal/delete`, {
+        userId,
+        journalId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.status);
+        if (res.data.status === "ok") {
+          console.log("hi5", res.data);
+        }
+      });
+  };
 
   return (
     <>
@@ -49,10 +60,7 @@ const JournalCard = (props) => {
                   <button className={buttonStyle} onClick={handleView}>
                     View
                   </button>
-                  <button
-                    className={buttonStyle}
-                    // onClick={handleDelete}
-                  >
+                  <button className={buttonStyle} onClick={handleDelete}>
                     Delete
                   </button>
                 </div>

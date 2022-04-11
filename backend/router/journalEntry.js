@@ -7,21 +7,20 @@ journalRouter.get("/workjournal", (req, res) => {
   res.json("User workjournal");
 });
 
-// Post a new workJournal
+// POST NEW JOURNAL (WORKS)
 journalRouter.post("/new", async (req, res) => {
   // finds user by id (based on current logged in user )
-  console.log(req.body);
   const userUpdate = await Users.updateOne(
     { userId: req.body.userId },
     { $push: { workJournal: req.body.newJournal, $sort: { date: -1 } } }
     //to sort new entries in decending order based on date
   );
   console.log(userUpdate);
-  res.json("Workjournal updated");
+  res.json({ status: "ok", message: "added new work journal" });
 });
 
 //User - All LOGGED IN user journal views (Public and Private)
-journalRouter.get("/:title/all", async (req, res) => {
+journalRouter.get("/all", async (req, res) => {
   const allJournalTitles = await Users.find({}, { workJournal: 1 });
   res.json(allJournalTitles);
 });
@@ -34,25 +33,32 @@ journalRouter.get("/:title/all", async (req, res) => {
 //   res.json(allJournalTitles);
 // });
 
-//UPDATE JOURNAL ENTRY (WILL REPLACE ALL JOURNALS - USE WITH CAUTION!!!)
-journalRouter.put("/new", async (req, res) => {
+//UPDATE JOURNAL ENTRY (WORKS)
+journalRouter.put("/edit", async (req, res) => {
   // finds user by id (based on current logged in user )
   const userUpdate = await Users.updateOne(
-    { _id: req.body.userId },
-    { $set: { workJournal: req.body } }
+    { userId: req.body.userId, "workJournal.journalId": req.body.journalId },
+    {
+      $set: {
+        "workJournal.$.content": req.body.update.content,
+        "workJournal.$.title": req.body.update.title,
+        "workJournal.$.date": req.body.update.date,
+        "workJournal.$.time": req.body.update.time,
+      },
+    }
   );
+  console.log(userUpdate);
   res.json("Workjournal updated");
 });
 
-//DELETE A JOURNAL ENTRY
-
-journalRouter.delete("/delete", async (req, res) => {
+//DELETE A JOURNAL ENTRY (WORKS)
+journalRouter.post("/delete", async (req, res) => {
   const deleteJournalEntry = await Users.updateOne(
-    { _id: req.session.userId },
-    { $pull: { workJournal: req.body } }
+    { userId: req.body.userId },
+    { $pull: { workJournal: { journalId: req.body.journalId } } }
   );
   console.log(deleteJournalEntry);
-  res.json("Workjournal entry deleted");
+  res.json({ status: "ok", message: "journal deleted" });
 });
 
 module.exports = journalRouter;

@@ -6,7 +6,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const connectDB = require("./db/db");
 const users = require("./router/users");
 const workJournal = require("./router/journalEntry");
-const { put } = require("./router/users");
+// const whiteFlags = require("./router/whiteFlags");
 
 const app = express();
 
@@ -49,7 +49,7 @@ app.use(
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    methods: ["POST", "PUT", "GET", "DELETE", "OPTIONS", "HEAD"],
     credentials: true,
   })
 );
@@ -57,27 +57,28 @@ app.use(
 //this /users is cumulative - eg users/create, users/login, /users/delete
 app.use("/users", users);
 app.use("/workJournal", workJournal);
+// app.use("/whiteFlags", whiteFlags);
 
 // seed data //
 
-// const seed = require("./models/seed.js");
-// const Users = require("./models/Users");
-// // const User = require('./models/users.js');
+const seed = require("./models/seed.js");
+const Users = require("./models/Users");
+// const User = require('./models/users.js');
 
-// app.get("/seedData", async (req, res) => {
-//   await Users.deleteMany({});
-//   // encrypts the given seed passwords
-//   await seed.forEach((user) => {
-//     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
-//   });
-//   // seeds the data
-//   await Users.create(seed, (err, createdUsers) => {
-//     // logs created users
-//     console.log(createdUsers);
-//     // redirects to index
-//     res.redirect("/");
-//   });
-// });
+app.get("/seedData", async (req, res) => {
+  await Users.deleteMany({});
+  // encrypts the given seed passwords
+  await seed.forEach((user) => {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+  });
+  // seeds the data
+  await Users.create(seed, (err, createdUsers) => {
+    // logs created users
+    console.log(createdUsers);
+    // redirects to index
+    res.redirect("/");
+  });
+});
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

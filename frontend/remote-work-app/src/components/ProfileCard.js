@@ -3,6 +3,7 @@ import InputBox from "./InputBox";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const ProfileCard = () => {
   // const [title, setTitle] = useState("");
@@ -23,6 +24,7 @@ const ProfileCard = () => {
 
     // const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
     const newJournal = {
+      journalId: uuidv4(),
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
       title: journal.title,
