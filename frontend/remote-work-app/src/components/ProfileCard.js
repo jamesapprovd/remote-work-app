@@ -4,7 +4,6 @@ import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-
 const ProfileCard = () => {
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
@@ -19,8 +18,19 @@ const ProfileCard = () => {
   let position = user.position;
   let interactionCount = user.interactionCount;
 
-  const postNewJournal = (event) => {
+  const onSubmitJournal = (event) => {
     event.preventDefault();
+
+    // const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
+    const newJournal = {
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      title: journal.title,
+      content: journal.content,
+      comment: [],
+    };
+    // dispatch(ADD_JOURNAL({ workJournal: { ...newJournal } }));
+
     axios
       .post(`http://127.0.0.1:5001/workJournal/new`, {
         title,
@@ -72,8 +82,7 @@ const ProfileCard = () => {
         text="Post New Journal"
         setTitle={setTitle}
         setDescription={setDescription}
-        onSubmit={postNewJournal}
-
+        onSubmit={onSubmitJournal}
       />
     </>
   );
