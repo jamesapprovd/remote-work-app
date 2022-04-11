@@ -30,11 +30,16 @@ const ProfileCard = () => {
       comment: [],
     };
     // dispatch(ADD_JOURNAL({ workJournal: { ...newJournal } }));
-
+    let userId = user.userId;
     axios
-      .post(`http://127.0.0.1:5001/workJournal/new`, {
-        journal,
-      })
+      .post(
+        `http://127.0.0.1:5001/workJournal/new`,
+        {
+          newJournal,
+          userId,
+        },
+        { withCredentials: true }
+      )
       .then((res) => {
         console.log(res.data);
         console.log(res.data.status);

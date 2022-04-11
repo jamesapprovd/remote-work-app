@@ -10,12 +10,13 @@ journalRouter.get("/workjournal", (req, res) => {
 // Post a new workJournal
 journalRouter.post("/new", async (req, res) => {
   // finds user by id (based on current logged in user )
-  console.log(req.session);
+  console.log(req.body);
   const userUpdate = await Users.updateOne(
-    { userId: req.session.userId },
-    { $push: { workJournal: req.body, $sort: { date: -1 } } }
+    { userId: req.body.userId },
+    { $push: { workJournal: req.body.newJournal, $sort: { date: -1 } } }
     //to sort new entries in decending order based on date
   );
+  console.log(userUpdate);
   res.json("Workjournal updated");
 });
 
@@ -37,7 +38,7 @@ journalRouter.get("/:title/all", async (req, res) => {
 journalRouter.put("/new", async (req, res) => {
   // finds user by id (based on current logged in user )
   const userUpdate = await Users.updateOne(
-    { _id: req.session.userId },
+    { _id: req.body.userId },
     { $set: { workJournal: req.body } }
   );
   res.json("Workjournal updated");

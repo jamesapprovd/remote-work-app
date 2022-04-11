@@ -20,7 +20,7 @@ const seedUsersData = [
     workJournal: [
       {
         date: "6/4/2022",
-        time: "2045",
+        time: "20:45",
         title: "Logos Creation",
         content: "I created a few awesome logos for the company!",
         private: true,
