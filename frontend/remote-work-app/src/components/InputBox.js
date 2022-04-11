@@ -8,7 +8,7 @@ const InputBox = (props) => {
   };
   const onChangeContent = (event) => {
     props.setJournal((prevState) => {
-      return { ...prevState, description: event.target.value };
+      return { ...prevState, content: event.target.value };
     });
   };
 
