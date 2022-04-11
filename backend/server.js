@@ -61,24 +61,24 @@ app.use("/whiteFlags", whiteFlags);
 
 // seed data //
 
-// const seed = require("./models/seed.js");
-// const Users = require("./models/Users");
-// // const User = require('./models/users.js');
+const seed = require("./models/seed.js");
+const Users = require("./models/Users");
+// const User = require('./models/users.js');
 
-// app.get("/seedData", async (req, res) => {
-//   await Users.deleteMany({});
-//   // encrypts the given seed passwords
-//   await seed.forEach((user) => {
-//     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
-//   });
-//   // seeds the data
-//   await Users.create(seed, (err, createdUsers) => {
-//     // logs created users
-//     console.log(createdUsers);
-//     // redirects to index
-//     res.redirect("/");
-//   });
-// });
+app.get("/seedData", async (req, res) => {
+  await Users.deleteMany({});
+  // encrypts the given seed passwords
+  await seed.forEach((user) => {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+  });
+  // seeds the data
+  await Users.create(seed, (err, createdUsers) => {
+    // logs created users
+    console.log(createdUsers);
+    // redirects to index
+    res.redirect("/");
+  });
+});
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

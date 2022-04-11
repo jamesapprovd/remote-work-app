@@ -2,15 +2,22 @@ const express = require("express");
 const Users = require("../models/Users");
 const whiteFlagRouter = express.Router();
 
+//get all white flags
+
+whiteFlagRouter.get("/allFlags", async (req, res) => {
+  const allFlags = await Users.find({}, { _id: 0, userId: 1, whiteFlag: 1 });
+  res.json(allFlags);
+});
+
 // create
 
 whiteFlagRouter.post("/new", async (req, res) => {
   console.log(req.body);
-  const newFlag = await Users.updateOne(
+  await Users.updateOne(
     { userId: req.body.userId },
     { $push: { whiteFlag: req.body.newFlag, $sort: { date: -1 } } }
   );
-  console.log(newFlag);
+  //   console.log(newFlag);
   res.json({ status: "ok", message: " new White Flag created" });
 });
 
@@ -33,13 +40,13 @@ whiteFlagRouter.post("/new", async (req, res) => {
 // update //
 
 whiteFlagRouter.put("/edit", async (req, res) => {
-  const editFlag = await Users.findOneAndUpdate(
+  await Users.findOneAndUpdate(
     { whiteFlagId: req.body.whiteFlagId },
     {
       $set: { whiteFlag: req.body.editedWhiteFlag },
     }
   );
-  console.log(editFlag);
+  //   console.log(editFlag);
   res.json({ status: "ok", message: "White Flag edited" });
 });
 /**
@@ -58,15 +65,25 @@ whiteFlagRouter.put("/edit", async (req, res) => {
  */
 // delete //
 
-whiteFlagRouter.put("/edit", async (req, res) => {
-  const editFlag = await Users.findOneAndUpdate(
-    { whiteFlagId: req.body.whiteFlagId },
+whiteFlagRouter.delete("/delete", async (req, res) => {
+  await Users.updateOne(
     {
-      $set: { whiteFlag: req.body.editedWhiteFlag },
-    }
+      whiteFlagId: req.body.whiteFlagId,
+    },
+    { $pull: { whiteFlag: req.body } }
   );
-  console.log(editFlag);
-  res.json({ status: "ok", message: "White Flag edited" });
+  res.json({ status: "ok", message: "White flag deleted " });
 });
+
+// solved //
+// whiteFlagRouter.put("/solved", async (req, res) => {
+//   const solvedFlag = await Users.findOneAndUpdate(
+//     { whiteFlagId: req.body.whiteFlagId },
+//     { _id: 0, whiteFlag: 1 },
+//     { $set: { isSolved: true } }
+//   );
+//   console.log(solvedFlag);
+//   res.json({ status: "ok", message: "White Flag solved" });
+// });
 
 module.exports = whiteFlagRouter;
