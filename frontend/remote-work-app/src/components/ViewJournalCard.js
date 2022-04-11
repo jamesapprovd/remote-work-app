@@ -3,15 +3,19 @@ import { v4 as uuidv4 } from "uuid";
 import EditForm from "./EditForm.js";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black float-right px-1";
 
 const ViewJournalCard = (props) => {
-  const [journal, setJournal] = useState({
-    title: "",
-    content: "",
-  });
+  // const [journal, setJournal] = useState({
+  //   title: "",
+  //   content: "",
+  // });
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
   const [hasEdit, setHasEdit] = useState(false);
 
   const user = useSelector(selectUser);
@@ -26,18 +30,41 @@ const ViewJournalCard = (props) => {
   // this shows view for edit with default value
   const handleEdit = (event) => {
     event.preventDefault();
-    setJournal((prevState) => {
-      return { ...prevState, title: journal.title };
-    });
-    setJournal((prevState) => {
-      return { ...prevState, content: journal.content };
-    });
+    setTitle(journalData.title);
+    setContent(journalData.content);
+    // setJournal((prevState) => {
+    //   return { ...prevState, title: journal.title };
+    // });
+    // setJournal((prevState) => {
+    //   return { ...prevState, content: journal.content };
+    // });
     setHasEdit(true);
   };
 
   // this is not working yet, doesn't update anything
   const handleUpdate = (event) => {
     event.preventDefault();
+    let userId = user.userId;
+    let journalId = journalData.journalId;
+    let update = {
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      title: title,
+      content: content,
+    };
+    axios
+      .put(`http://127.0.0.1:5001/workJournal/edit`, {
+        userId,
+        journalId,
+        update,
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.status);
+        if (res.data.status === "ok") {
+          console.log("hi5", res.data);
+        }
+      });
     setHasEdit(false);
   };
 
@@ -45,9 +72,10 @@ const ViewJournalCard = (props) => {
     <>
       {hasEdit ? (
         <EditForm
-          title={journal.title}
-          content={journal.content}
-          setJournal={setJournal}
+          title={title}
+          content={content}
+          setTitle={setTitle}
+          setContent={setContent}
           onSubmit={handleUpdate}
         />
       ) : (

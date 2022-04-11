@@ -3,7 +3,7 @@ import React from "react";
 const EditForm = (props) => {
   const handleTitleChange = (event) => props.setTitle(event.target.value);
   const handleDescriptionChange = (event) =>
-    props.setDescription(event.target.value);
+    props.setContent(event.target.value);
 
   return (
     <>
@@ -21,7 +21,7 @@ const EditForm = (props) => {
             className="border border-black m-2 text-center"
             rows="5"
             placeholder="description"
-            defaultValue={props.description}
+            defaultValue={props.content}
             onChange={handleDescriptionChange}
           />
           <button type="submit" className="border m-2">

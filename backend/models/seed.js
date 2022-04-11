@@ -19,6 +19,7 @@ const seedUsersData = [
     interactionCount: 5,
     workJournal: [
       {
+        journalId: "1",
         date: "6/4/2022",
         time: "20:45",
         title: "Logos Creation",
@@ -40,6 +41,7 @@ const seedUsersData = [
         ],
       },
       {
+        journalId: "2",
         date: "7/4/2022",
         time: "930",
         title: "Puntuality",
@@ -92,6 +94,7 @@ const seedUsersData = [
     interactionCount: 0,
     workJournal: [
       {
+        journalId: "3",
         date: "6/4/2022",
         time: "2056",
         title: "React",
@@ -113,6 +116,7 @@ const seedUsersData = [
         ],
       },
       {
+        journalId: "4",
         date: "7/4/2022",
         time: "1000",
         title: "Lunch",
@@ -166,6 +170,7 @@ const seedUsersData = [
     interactionCount: 0,
     workJournal: [
       {
+        journalId: "5",
         date: "6/4/2022",
         time: "2045",
         title: "Userflow wireframes",
@@ -187,6 +192,7 @@ const seedUsersData = [
         ],
       },
       {
+        journalId: "6",
         date: "7/4/2022",
         time: "1530",
         title: "Efficiency",
@@ -240,6 +246,7 @@ const seedUsersData = [
     interactionCount: 2,
     workJournal: [
       {
+        journalId: "7",
         date: "7/4/2022",
         time: "1200",
         title: "Coded component A",
@@ -255,6 +262,7 @@ const seedUsersData = [
         ],
       },
       {
+        journalId: "8",
         date: "7/4/2022",
         time: "1659",
         title: "Coded component B",
