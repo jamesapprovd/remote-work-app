@@ -15,14 +15,19 @@ const NavBar = () => {
   const onClickLogout = (e) => {
     e.preventDefault();
     console.log("hi");
-    axios.get("http://localhost:5001/users/logout").then((res) => {
-      console.log("hi2");
-      if (res.data.status === "ok") {
-        console.log("hi3", res.data);
-        dispatch(LOGOUT());
-        navigate("/");
-      }
-    });
+    axios
+      .get("http://localhost:5001/users/logout", {
+        // withCredentials: true,
+        // headers: { mode: "no-cors" },
+      })
+      .then((res) => {
+        console.log("hi2");
+        if (res.data.status === "ok") {
+          console.log("hi3", res.data);
+          dispatch(LOGOUT());
+          navigate("/");
+        }
+      });
     // dispatch(LOGOUT());
     // navigate("/");
   };

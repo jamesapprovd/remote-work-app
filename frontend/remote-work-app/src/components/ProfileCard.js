@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import InputBox from "./InputBox";
-import { ADD_JOURNAL, selectUser } from "../redux/userSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { selectUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
+import axios from "axios";
+
 
 const ProfileCard = () => {
   // const [title, setTitle] = useState("");
@@ -17,28 +19,40 @@ const ProfileCard = () => {
   let position = user.position;
   let interactionCount = user.interactionCount;
 
-  const dispatch = useDispatch();
-
-  const onSubmitJournal = (e) => {
-    e.preventDefault();
-    // const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
-    const newJournal = {
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
-      title: journal.title,
-      content: journal.content,
-      comment: [],
-    };
-    // dispatch(ADD_JOURNAL({ workJournal: { ...newJournal } }));
+  const postNewJournal = (event) => {
+    event.preventDefault();
+    axios
+      .post(`http://127.0.0.1:5001/workJournal/new`, {
+        title,
+        description,
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.status);
+        if (res.data.status === "ok") {
+          console.log("hi5", res.data);
+        }
+      });
+    //   try {
+    //     const res = await fetch(`http://127.0.0.1:5001/workJournal/new`, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         mode: "no-cors",
+    //       },
+    //       body: JSON.stringify({
+    //         title: title,
+    //         description: description,
+    //       }),
+    //     });
+    //     const data = await res.json();
+    //     console.log(data);
+    //   } catch (err) {
+    //     console.log(err.message);
+    //   }
+    // };
   };
-  console.log(user.workJournal);
-  // const postNewJournal = (event) => {
-  //   event.preventDefault();
-  //   axios.post(`http://127.0.0.1:5001/journals/new`, {
-  //     title: title,
-  //     description: description,
-  //   });
-  // };
+
   // not sure how the axios syntax work, haven't installed axios yet
 
   return (
@@ -56,10 +70,10 @@ const ProfileCard = () => {
       </div>
       <InputBox
         text="Post New Journal"
-        title={journal.title}
-        content={journal.description}
-        setJournal={setJournal}
-        onSubmit={onSubmitJournal}
+        setTitle={setTitle}
+        setDescription={setDescription}
+        onSubmit={postNewJournal}
+
       />
     </>
   );

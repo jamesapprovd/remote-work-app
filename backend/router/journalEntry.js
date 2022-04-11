@@ -11,8 +11,9 @@ journalRouter.get("/workjournal", (req, res) => {
 // Post a new workJournal
 journalRouter.post("/new", async (req, res) => {
   // finds user by id (based on current logged in user )
+  console.log(req.session.userId);
   const userUpdate = await Users.updateOne(
-    { _id: req.session.userId },
+    { userId: req.session.userId },
     { $push: { workJournal: req.body, $sort: { date: -1 } } }
     //to sort new entries in decending order based on date
   );
