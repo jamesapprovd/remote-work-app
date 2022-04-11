@@ -31,7 +31,6 @@ const LoginPage = () => {
 
   const onSubmitLogin = (e) => {
     e.preventDefault();
-    console.log("hi");
     const currentUser = users.find((user) => {
       if (user.email === email) {
         return user;
@@ -43,36 +42,12 @@ const LoginPage = () => {
       })
     );
     navigate("/main");
-
-    /**
-     * something in the login broke :( i cant figure out
-     * i think the password encryption? cause the code ^ can login and seed data?
-     */
-
-    // axios
-    //   .post(
-    //     "http://localhost:5001/users/login",
-    //     { email, password },
-    //     { withCredentials: true }
-    //   )
-    //   .then((res) => {
-    //     console.log("hi", res);
-    //     if (res.data.status === "ok") {
-    //       const currentUser = users.find((user) => {
-    //         if (user.email === email) {
-    //           return user;
-    //         }
-    //       });
-    //       dispatch(
-    //         LOGIN({
-    //           ...currentUser,
-    //         })
-    //       );
-    //       navigate("/main");
-    //     }
-    //   })
-    //   .catch((err) => alert("Log in failed, invalid credentials", err));
   };
+  //   /**
+  //    * something in the login broke :( i cant figure out
+  //    * i think the password encryption? cause the code ^ can login and seed data?
+  //    */
+
   // const onSubmitLogin = (e) => {
   //   e.preventDefault();
   //   console.log("hi");
