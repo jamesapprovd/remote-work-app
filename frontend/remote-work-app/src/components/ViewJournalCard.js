@@ -8,8 +8,10 @@ const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black float-right px-1";
 
 const ViewJournalCard = (props) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [journal, setJournal] = useState({
+    title: "",
+    content: "",
+  });
   const [hasEdit, setHasEdit] = useState(false);
 
   const user = useSelector(selectUser);
@@ -39,10 +41,9 @@ const ViewJournalCard = (props) => {
     <>
       {hasEdit ? (
         <EditForm
-          title={title}
-          description={description}
-          setTitle={setTitle}
-          setDescription={setDescription}
+          title={journal.title}
+          content={journal.description}
+          setJournal={setJournal}
           onSubmit={handleUpdate}
         />
       ) : (
