@@ -17,7 +17,7 @@ const NavBar = () => {
     console.log("hi");
     axios
       .get("http://localhost:5001/users/logout", {
-        // withCredentials: true,
+        withCredentials: true,
         // headers: { mode: "no-cors" },
       })
       .then((res) => {
