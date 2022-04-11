@@ -28,7 +28,7 @@ const ProfileCard = () => {
       time: new Date().toLocaleTimeString(),
       title: journal.title,
       content: journal.content,
-      comment: [],
+      comments: [],
     };
     let userId = user.userId;
     axios
@@ -45,7 +45,8 @@ const ProfileCard = () => {
           console.log(res.data.message);
         }
       });
-    dispatch(ADD_JOURNAL({ newJournal }));
+    console.log(newJournal);
+    dispatch(ADD_JOURNAL(newJournal));
   };
 
   return (

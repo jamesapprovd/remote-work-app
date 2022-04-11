@@ -15,11 +15,27 @@ export const userSlice = createSlice({
     },
     LOGOUT(state) {
       state.user = "";
+      state.workJournal = "";
+      state.whiteFlag = "";
+    },
+    ADD_JOURNAL: (state, action) => {
+      const newJournal = {
+        journalId: action.payload.journalId,
+        date: action.payload.date,
+        time: action.payload.time,
+        title: action.payload.title,
+        content: action.payload.content,
+        comments: action.payload.comments,
+      };
+      state.workJournal.push(newJournal);
+    },
+    REMOVE_JOURNAL: (state, action) => {
+      state.filter((journal) => journal.journalId !== action.payload.journalId);
     },
   },
 });
 
-export const { LOGIN, LOGOUT, ADD_JOURNAL } = userSlice.actions;
+export const { LOGIN, LOGOUT, ADD_JOURNAL, REMOVE_JOURNAL } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectWorkJournal = (state) => state.user.workJournal;

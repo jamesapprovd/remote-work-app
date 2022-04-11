@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ViewJournalCard from "./ViewJournalCard.js";
 import { v4 as uuidv4 } from "uuid";
-import { selectUser } from "../redux/userSlice";
+import { selectUser, selectWorkJournal } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ const JournalCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
 
   const user = useSelector(selectUser);
+  const workJournal = useSelector(selectWorkJournal);
 
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id);
@@ -41,7 +42,7 @@ const JournalCard = (props) => {
     <>
       {!hasViewed ? (
         <div className="text-left">
-          {user.workJournal.map((element, index) => {
+          {workJournal.map((journal, index) => {
             return (
               <div
                 id={index}
@@ -49,12 +50,12 @@ const JournalCard = (props) => {
                 className=" flex flex-col shadow-md shadow-purple border border-lavender rounded-lg m-2 p-2"
               >
                 <p className="text-sm">
-                  {element.date}, {element.time}
+                  {journal.date}, {journal.time}
                 </p>
-                <p className="font-bold border-b">{element.title}</p>
-                <p className="text-sm">{element.content}</p>
+                <p className="font-bold border-b">{journal.title}</p>
+                <p className="text-sm">{journal.content}</p>
                 <p className="font-bold text-[13px] border-y border-lavender">
-                  Comments ({element.comments.length})
+                  Comments ({journal.comments.length})
                 </p>
                 <div className="flex flex-row-reverse" id={index}>
                   <button className={buttonStyle} onClick={handleView}>
