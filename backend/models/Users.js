@@ -32,16 +32,17 @@ const usersSchema = Schema(
     ],
     whiteFlag: [
       {
-        date: { type: Date },
-        time: { type: Date, default: Date.now },
+        whiteFlagId: { type: String },
+        date: { type: String },
+        time: { type: String },
         title: { type: String },
         content: { type: String },
         isSolved: { type: Boolean, default: false },
         comments: [
           {
             username: { type: String },
-            date: { type: Date },
-            time: { type: Date, default: Date.now },
+            date: { type: String },
+            time: { type: String },
             comment: { type: String },
           },
         ],
