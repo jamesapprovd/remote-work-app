@@ -10,7 +10,6 @@ import EmployeeCard from "../components/EmployeeCard";
 
 const Profile = () => {
   const [index, setIndex] = useState(null);
-
   const user = useSelector(selectUser);
 
   return (

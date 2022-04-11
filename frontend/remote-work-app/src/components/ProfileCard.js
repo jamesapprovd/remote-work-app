@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import InputBox from "./InputBox";
 import { selectUser } from "../redux/userSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { ADD_JOURNAL } from "../redux/userSlice";
 
 const ProfileCard = () => {
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
   const [journal, setJournal] = useState({
     title: "",
     content: "",
   });
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   let profileImage = user.img;
   let name = user.username;
@@ -22,7 +22,6 @@ const ProfileCard = () => {
   const onSubmitJournal = (event) => {
     event.preventDefault();
 
-    // const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
     const newJournal = {
       journalId: uuidv4(),
       date: new Date().toLocaleDateString(),
@@ -31,7 +30,6 @@ const ProfileCard = () => {
       content: journal.content,
       comment: [],
     };
-    // dispatch(ADD_JOURNAL({ workJournal: { ...newJournal } }));
     let userId = user.userId;
     axios
       .post(
@@ -43,33 +41,12 @@ const ProfileCard = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5", res.data);
+          console.log(res.data.message);
         }
       });
-    //   try {
-    //     const res = await fetch(`http://127.0.0.1:5001/workJournal/new`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         mode: "no-cors",
-    //       },
-    //       body: JSON.stringify({
-    //         title: title,
-    //         description: description,
-    //       }),
-    //     });
-    //     const data = await res.json();
-    //     console.log(data);
-    //   } catch (err) {
-    //     console.log(err.message);
-    //   }
-    // };
+    dispatch(ADD_JOURNAL({ newJournal }));
   };
-
-  // not sure how the axios syntax work, haven't installed axios yet
 
   return (
     <>

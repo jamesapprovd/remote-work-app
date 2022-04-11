@@ -10,6 +10,10 @@ import JournalCard from "../components/JournalCard";
 const Main = () => {
   const user = useSelector(selectUser);
   const [index, setIndex] = useState(null);
+  // const workJournal = useSelector(selectWorkJournal);
+  // console.log(workJournal);
+  // const whiteFlag = useSelector(selectWhiteFlag);
+  // console.log(whiteFlag);
 
   return (
     <>

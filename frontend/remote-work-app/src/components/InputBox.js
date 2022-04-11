@@ -13,7 +13,7 @@ const InputBox = (props) => {
   };
 
   return (
-    <form onSubmit={props.onSubmit}>
+    <form className="border" onSubmit={props.onSubmit}>
       <label>Enter a new Entry:</label>
       <div className="flex flex-col w-auto">
         <input

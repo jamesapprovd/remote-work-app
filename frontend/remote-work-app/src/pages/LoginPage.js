@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { LOGIN } from "../redux/userSlice";
 import { selectUsersData, STORE_DATA } from "../redux/usersDataSlice";
 import axios from "axios";
-// import { current } from "@reduxjs/toolkit";
 import logo from "../images/Logo.png";
 
 const LoginPage = () => {
