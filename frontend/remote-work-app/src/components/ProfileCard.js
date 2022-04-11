@@ -4,10 +4,14 @@ import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const ProfileCard = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
 
+const ProfileCard = () => {
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  const [journal, setJournal] = useState({
+    title: "",
+    content: "",
+  });
   const user = useSelector(selectUser);
 
   let profileImage = user.img;
@@ -48,6 +52,7 @@ const ProfileCard = () => {
     //   }
     // };
   };
+
   // not sure how the axios syntax work, haven't installed axios yet
 
   return (
@@ -68,6 +73,7 @@ const ProfileCard = () => {
         setTitle={setTitle}
         setDescription={setDescription}
         onSubmit={postNewJournal}
+
       />
     </>
   );

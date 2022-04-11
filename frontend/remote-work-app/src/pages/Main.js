@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import EmployeeColumn from "../components/EmployeeColumn";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import EmployeeCard from "../components/EmployeeCard";
 import logo from "../images/Logo.png";
+import JournalCard from "../components/JournalCard";
 
 const Main = () => {
   const user = useSelector(selectUser);
-  // console.log("mainpage", user.img);
+  const [index, setIndex] = useState(null);
+
   return (
     <>
       <div className="flex flex-row">
@@ -28,8 +30,10 @@ const Main = () => {
         <div className="flex flex-col basis-5/6">
           <NavBar />
           <div className="flex flex-row">
-            <div className="bg-purple basis-1/2 m-1">Journals</div>
-            <div className="bg-green basis-1/2 m-1">White Flags</div>
+            <div className="bg-lilac rounded-lg basis-1/2 m-1">
+              <JournalCard index={index} setIndex={setIndex} />
+            </div>
+            <div className="bg-lilac rounded-lg basis-1/2 m-1">White Flags</div>
           </div>
         </div>
       </div>
