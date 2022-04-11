@@ -25,11 +25,9 @@ const NavBar = () => {
         if (res.data.status === "ok") {
           console.log("hi3", res.data);
           dispatch(LOGOUT());
-          navigate("/");
         }
       });
-    // dispatch(LOGOUT());
-    // navigate("/");
+    navigate("/");
   };
   return (
     <>

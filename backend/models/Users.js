@@ -15,8 +15,8 @@ const usersSchema = Schema(
     interactionCount: { type: Number },
     workJournal: [
       {
-        date: { type: Date },
-        time: { type: Date, default: Date.now }, //Apparently, if you save a document with an unset time field, Mongoose will fill in this field with the current time
+        date: { type: String },
+        time: { type: String }, //Apparently, if you save a document with an unset time field, Mongoose will fill in this field with the current time
         title: { type: String },
         content: { type: String },
         private: { type: Boolean, default: true },
