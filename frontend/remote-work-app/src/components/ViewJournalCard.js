@@ -4,6 +4,9 @@ import EditForm from "./EditForm.js";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 
+const buttonStyle =
+  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black float-right px-1";
+
 const ViewJournalCard = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -44,32 +47,32 @@ const ViewJournalCard = (props) => {
         />
       ) : (
         <div className="bg-white text-left">
-          <div className="border border-blue-500 mx-2 my-2 px-1 py-8">
+          <div className="shadow-md shadow-purple border border-lavender rounded-lg mx-2 my-2 px-1 py-8">
             <p>
               {journalData.date}, {journalData.time}
             </p>
-            <p className="font-bold">Title: {journalData.title}</p>
-            <p>{journalData.content}</p>
+            <p className="font-bold">{journalData.title}</p>
+            <p className="text-sm">{journalData.content}</p>
             <br />
-            <p className="font-bold">
+            <p className="font-bold text-sm">
               Comments ({journalData.comments.length})
             </p>
             {journalData.comments.map((element) => {
               return (
-                <div key={uuidv4()}>
-                  <p className="font-bold">{element.username}</p>
-                  <p>{element.comment}</p>
-                  <p>
+                <div className="border-t border-purple" key={uuidv4()}>
+                  <p className="font-bold text-sm">{element.username}</p>
+                  <p className="text-sm">{element.comment}</p>
+                  <p className="text-sm">
                     {element.date}, {element.time}
                   </p>
                   <br />
                 </div>
               );
             })}
-            <button className="float-right px-1" onClick={handleClose}>
+            <button className={buttonStyle} onClick={handleClose}>
               Close
             </button>
-            <button className="float-right px-1 mr-2" onClick={handleEdit}>
+            <button className={buttonStyle} onClick={handleEdit}>
               Edit
             </button>
           </div>

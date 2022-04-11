@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import InputBox from "./InputBox";
-import { selectUser } from "../redux/userSlice";
-import { useSelector } from "react-redux";
+import { ADD_JOURNAL, selectUser } from "../redux/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const ProfileCard = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
+  const [journal, setJournal] = useState({
+    title: "",
+    content: "",
+  });
   const user = useSelector(selectUser);
 
   let profileImage = user.img;
@@ -14,6 +17,21 @@ const ProfileCard = () => {
   let position = user.position;
   let interactionCount = user.interactionCount;
 
+  const dispatch = useDispatch();
+
+  const onSubmitJournal = (e) => {
+    e.preventDefault();
+    // const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
+    const newJournal = {
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      title: journal.title,
+      content: journal.content,
+      comment: [],
+    };
+    // dispatch(ADD_JOURNAL({ workJournal: { ...newJournal } }));
+  };
+  console.log(user.workJournal);
   // const postNewJournal = (event) => {
   //   event.preventDefault();
   //   axios.post(`http://127.0.0.1:5001/journals/new`, {
@@ -38,9 +56,10 @@ const ProfileCard = () => {
       </div>
       <InputBox
         text="Post New Journal"
-        setTitle={setTitle}
-        setDescription={setDescription}
-        // onSubmit={postNewJournal}
+        title={journal.title}
+        content={journal.description}
+        setJournal={setJournal}
+        onSubmit={onSubmitJournal}
       />
     </>
   );

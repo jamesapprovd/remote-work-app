@@ -32,12 +32,10 @@ const Profile = () => {
         <div className="flex flex-col basis-5/6">
           <NavBar />
           <div className="flex flex-row">
-            <div className="bg-purple basis-1/2 m-1">
-              <p>Work Journals</p>
+            <div className="bg-lilac rounded-lg basis-1/2 m-1">
               <JournalCard index={index} setIndex={setIndex} />
             </div>
-            <div className="bg-green basis-1/2 m-1">
-              Profile
+            <div className="bg-lilac rounded-lg basis-1/2 m-1">
               <ProfileCard />
             </div>
           </div>

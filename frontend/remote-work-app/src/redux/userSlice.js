@@ -12,10 +12,13 @@ export const userSlice = createSlice({
     LOGOUT(state) {
       state.user = "";
     },
+    // ADD_JOURNAL(state, action) {
+    //   state.user = { ...state, ...action.payload };
+    // },
   },
 });
 
-export const { LOGIN, LOGOUT } = userSlice.actions;
+export const { LOGIN, LOGOUT, ADD_JOURNAL } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 
