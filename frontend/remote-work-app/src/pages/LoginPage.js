@@ -33,7 +33,11 @@ const LoginPage = () => {
   const onSubmitLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5001/users/login", { email, password })
+      .post(
+        "http://localhost:5001/users/login",
+        { email, password },
+        { withCredentials: true }
+      )
       .then((res) => {
         if (res.data.status === "ok") {
           const currentUser = users.find((user) => {

@@ -6,6 +6,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const connectDB = require("./db/db");
 const users = require("./router/users");
 const workJournal = require("./router/journalEntry");
+const { put } = require("./router/users");
 
 const app = express();
 
@@ -18,10 +19,10 @@ app.get("/", (req, res) => {
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI,
   collection: "sessions",
+  expires: 1000,
 });
 
 //Middleware
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -30,11 +31,26 @@ connectDB(process.env.MONGODB_URI);
 // Creating sessions
 app.use(
   session({
+    name: "TEST_SESSION",
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     maxAge: 24 * 60 * 60 * 1000,
     store: store,
+    cookie: {
+      sameSite: false,
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  })
+);
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    credentials: true,
   })
 );
 

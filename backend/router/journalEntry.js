@@ -1,4 +1,3 @@
-const e = require("express");
 const express = require("express");
 const Users = require("../models/Users");
 const journalRouter = express.Router();
@@ -11,7 +10,7 @@ journalRouter.get("/workjournal", (req, res) => {
 // Post a new workJournal
 journalRouter.post("/new", async (req, res) => {
   // finds user by id (based on current logged in user )
-  console.log(req.session.userId);
+  console.log(req.session);
   const userUpdate = await Users.updateOne(
     { userId: req.session.userId },
     { $push: { workJournal: req.body, $sort: { date: -1 } } }
