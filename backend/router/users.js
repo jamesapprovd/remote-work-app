@@ -28,6 +28,7 @@ router.post("/create", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  console.log(req.session);
   const { email, password } = req.body;
   const user = await Users.findOne({ email: req.body.email });
 
@@ -59,9 +60,11 @@ router.get("/main", auth, (req, res) => {
 
 //log out unable to figure out why its not deleting sessions
 router.get("/logout", (req, res) => {
+  console.log(req.session);
   req.session.destroy(() => {
     res.json({ status: "ok", message: "logged out" });
   });
+  console.log(req.session);
 });
 
 //authentication
