@@ -15,8 +15,8 @@ const Main = () => {
   return (
     <>
       <div className="flex flex-row">
-        <div className="flex flex-col basis-1/6 p-2 bg-lilac h-screen">
-          <div className="flex bg-purple-400 h-16">
+        <div className="flex flex-col w-52 p-2 h-screen">
+          <div className="flex bg-purple-400 h-38">
             <img className="self-center" src={logo} alt="REMOTR" />
           </div>
           <EmployeeCard
@@ -28,7 +28,7 @@ const Main = () => {
           <p>Your Team:</p>
           <EmployeeColumn />
         </div>
-        <div className="flex flex-col basis-5/6">
+        <div className=" flex flex-col basis-5/6">
           <NavBar />
           <div className="flex flex-row">
             <div className="bg-lilac rounded-lg basis-1/2 m-1">

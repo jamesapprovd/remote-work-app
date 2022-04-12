@@ -6,7 +6,6 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const connectDB = require("./db/db");
 const users = require("./router/users");
 const workJournal = require("./router/journalEntry");
-const comments = require("./router/comments");
 const whiteFlags = require("./router/whiteFlags");
 
 const app = express();
@@ -59,7 +58,6 @@ app.use(
 app.use("/users", users);
 app.use("/workJournal", workJournal);
 app.use("/whiteFlags", whiteFlags);
-app.use("/comments", comments);
 
 // seed data //
 

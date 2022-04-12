@@ -6,7 +6,7 @@ import { LOGOUT } from "../redux/userSlice";
 
 // added a log out button to the nav bar
 
-const styleLi = "m-5 hover:text-black hover:border-y-2 hover:border-green";
+const styleLi = "m-5 hover:text-black hover:border-b-2 hover:border-green";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -31,8 +31,8 @@ const NavBar = () => {
   };
   return (
     <>
-      <header>
-        <nav className="flex flex-row justify-evenly bg-lilac">
+      <header className="my-14 flex flex-row justify-between">
+        <nav>
           <ul className="flex justify-center text-purple">
             <li className={styleLi}>
               <NavLink to="/main">Home</NavLink>
@@ -44,13 +44,13 @@ const NavBar = () => {
               <NavLink to="/my-white-flags">myWhiteFlags</NavLink>
             </li>
           </ul>
-          <button
-            className="border-2 border-purple rounded-md w-20 self-end hover:bg-green hover:text-black h-[50%] m-4 p-1"
-            onClick={onClickLogout}
-          >
-            Log out
-          </button>
         </nav>
+        <button
+          className="border-2 border-purple rounded-md w-20 self-end hover:bg-green hover:text-black h-[50%] m-4 p-1"
+          onClick={onClickLogout}
+        >
+          Log out
+        </button>
       </header>
     </>
   );
