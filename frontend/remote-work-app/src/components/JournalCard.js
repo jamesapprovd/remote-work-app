@@ -77,11 +77,7 @@ const JournalCard = (props) => {
         </div>
       ) : (
         <>
-          <ViewJournalCard
-            index={props.index}
-            setIndex={props.setIndex}
-            setHasViewed={setHasViewed}
-          />
+          <ViewJournalCard index={props.index} setHasViewed={setHasViewed} />
         </>
       )}
     </>

@@ -19,10 +19,6 @@ const WhiteFlags = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  let name = user.username;
-  let position = user.position;
-  let interactionCount = user.interactionCount;
-
   const onSubmitFlag = (event) => {
     event.preventDefault();
     const newFlag = {

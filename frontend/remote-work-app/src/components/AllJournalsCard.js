@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { selectUsersData } from "../redux/usersDataSlice";
-import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import ViewAllJournalsCard from "./ViewAllJournalsCard";
 
 const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
 
 const AllJournalsCard = (props) => {
-  const users = useSelector(selectUsersData);
   const [hasViewed, setHasViewed] = useState(false);
   const [allJournals, setAllJournals] = useState([]);
 
@@ -21,14 +19,13 @@ const AllJournalsCard = (props) => {
     axios.get("http://localhost:5001/workJournal/all").then((res) => {
       const data = res.data;
       setAllJournals(data);
-      return;
     });
   }, []);
   console.log(allJournals);
 
   return (
     <>
-      {allJournals.length > 0 ? (
+      {!hasViewed ? (
         <div className="text-left">
           {allJournals.map((element, index) => {
             return (
@@ -61,7 +58,13 @@ const AllJournalsCard = (props) => {
           })}
         </div>
       ) : (
-        <p>test</p>
+        <>
+          <ViewAllJournalsCard
+            index={props.index}
+            setHasViewed={setHasViewed}
+            allJournals={allJournals}
+          />
+        </>
       )}
     </>
   );
