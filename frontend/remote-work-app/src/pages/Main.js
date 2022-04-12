@@ -14,22 +14,19 @@ const Main = () => {
 
   return (
     <>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-52 p-2 h-screen">
-          <div className="flex bg-purple-400 h-38">
-            <img className="self-center" src={logo} alt="REMOTR" />
+      <div className="flex flex-col">
+        <NavBar />
+        <div className="flex flex-row basis-5/6">
+          <div className="flex flex-col w-52 p-2 h-screen">
+            <EmployeeCard
+              img={user.img}
+              username={user.username}
+              position={user.position}
+              status={user.status}
+            />
+            <p>Your Team:</p>
+            <EmployeeColumn />
           </div>
-          <EmployeeCard
-            img={user.img}
-            username={user.username}
-            position={user.position}
-            status={user.status}
-          />
-          <p>Your Team:</p>
-          <EmployeeColumn />
-        </div>
-        <div className=" flex flex-col basis-5/6">
-          <NavBar />
           <div className="flex flex-row justify-evenly">
             <div className="shadow-inner shadow-purple  basis-1/2 m-1">
               <span className="font-bold">Work Journals</span>
