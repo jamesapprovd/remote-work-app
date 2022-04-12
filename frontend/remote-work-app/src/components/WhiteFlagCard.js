@@ -52,7 +52,6 @@ const WhiteFlagCard = (props) => {
                 <p className="font-bold border-b">{element.title}</p>
                 <p className="text-sm">{element.content}</p>
                 <p className="font-bold text-[13px] border-y border-lavender">
-                  {/* /want to make it white instead of purple */}
                   Comments ({element.comments.length})
                 </p>
                 <div className="flex flex-row-reverse" id={index}>

@@ -45,11 +45,37 @@ export const userSlice = createSlice({
       state.workJournal[index].title = action.payload.update.title;
       state.workJournal[index].content = action.payload.update.content;
     },
+
+    ADD_FLAG: (state, action) => {
+      const newFlag = {
+        whiteFlagId: action.payload.whiteFlagId,
+        date: action.payload.date,
+        time: action.payload.time,
+        title: action.payload.title,
+        content: action.payload.content,
+        isSolved: action.payload.isSolved,
+        comments: action.payload.comments,
+      };
+      state.whiteFlag.push(newFlag);
+    },
+
+    // REMOVE_FLAG: (state, action) => {
+    //   const filteredFlags = state.whiteFlag.filter(
+    //     (flag) => flag.whiteFlagId !== action.payload
+    //   );
+    //   state.whiteFlag = filteredFlags;
+    // },
   },
 });
 
-export const { LOGIN, LOGOUT, ADD_JOURNAL, REMOVE_JOURNAL, EDIT_JOURNAL } =
-  userSlice.actions;
+export const {
+  LOGIN,
+  LOGOUT,
+  ADD_JOURNAL,
+  REMOVE_JOURNAL,
+  EDIT_JOURNAL,
+  ADD_FLAG,
+} = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectWorkJournal = (state) => state.user.workJournal;
