@@ -37,13 +37,19 @@ export const userSlice = createSlice({
       state.workJournal = filteredJournals;
     },
 
-    // EDIT_JOURNAL: (state, action) => {
-
-    // }
+    EDIT_JOURNAL: (state, action) => {
+      const index = state.workJournal.findIndex(
+        (journal) => journal.journalId === action.payload.journalId
+      );
+      console.log(action.payload);
+      state.workJournal[index].title = action.payload.update.title;
+      state.workJournal[index].content = action.payload.update.content;
+    },
   },
 });
 
-export const { LOGIN, LOGOUT, ADD_JOURNAL, REMOVE_JOURNAL } = userSlice.actions;
+export const { LOGIN, LOGOUT, ADD_JOURNAL, REMOVE_JOURNAL, EDIT_JOURNAL } =
+  userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectWorkJournal = (state) => state.user.workJournal;

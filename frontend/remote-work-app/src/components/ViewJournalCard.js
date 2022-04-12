@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import EditForm from "./EditForm.js";
-import { selectUser, selectWorkJournal } from "../redux/userSlice";
-import { useSelector } from "react-redux";
+import {
+  selectUser,
+  selectWorkJournal,
+  EDIT_JOURNAL,
+} from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 const buttonStyle =
@@ -23,6 +27,8 @@ const ViewJournalCard = (props) => {
 
   let journalData = workJournal[props.index];
 
+  const dispatch = useDispatch();
+
   // this changes the view from individual journal to all journals
   const handleClose = () => {
     props.setHasViewed(false);
@@ -33,12 +39,6 @@ const ViewJournalCard = (props) => {
     event.preventDefault();
     setTitle(journalData.title);
     setContent(journalData.content);
-    // setJournal((prevState) => {
-    //   return { ...prevState, title: journal.title };
-    // });
-    // setJournal((prevState) => {
-    //   return { ...prevState, content: journal.content };
-    // });
     setHasEdit(true);
   };
 
@@ -48,8 +48,6 @@ const ViewJournalCard = (props) => {
     let userId = user.userId;
     let journalId = journalData.journalId;
     let update = {
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
       title: title,
       content: content,
     };
@@ -66,6 +64,8 @@ const ViewJournalCard = (props) => {
           console.log("hi5", res.data);
         }
       });
+    dispatch(EDIT_JOURNAL({ journalId, update }));
+    console.log("hi2");
     setHasEdit(false);
   };
 
