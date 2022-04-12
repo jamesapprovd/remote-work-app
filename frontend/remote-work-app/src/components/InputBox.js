@@ -2,14 +2,31 @@ import React, { useState } from "react";
 
 const InputBox = (props) => {
   const onChangeTitle = (event) => {
-    props.setJournal((prevState) => {
-      return { ...prevState, title: event.target.value };
-    });
+    if (props.setJournal) {
+      props.setJournal((prevState) => {
+        return { ...prevState, title: event.target.value };
+      });
+    } else {
+      props.setFlag((prevState) => {
+        return { ...prevState, title: event.target.value };
+      });
+    }
   };
+  // const onChangeTitle = (event) => {
+  //   props.setJournal((prevState) => {
+  //     return { ...prevState, title: event.target.value };
+  //   });
+  // };
   const onChangeContent = (event) => {
-    props.setJournal((prevState) => {
-      return { ...prevState, content: event.target.value };
-    });
+    if (props.setJournal) {
+      props.setJournal((prevState) => {
+        return { ...prevState, content: event.target.value };
+      });
+    } else {
+      props.setFlag((prevState) => {
+        return { ...prevState, content: event.target.value };
+      });
+    }
   };
 
   return (

@@ -5,20 +5,15 @@ import InputBox from "../components/InputBox";
 import WhiteFlagCard from "../components/WhiteFlagCard";
 import { selectUser } from "../redux/userSlice";
 import { useSelector, useDispatch } from "react-redux";
-// import { ADD_FLAG } from "../redux/userSlice";
+import { ADD_FLAG } from "../redux/userSlice";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const WhiteFlags = () => {
   const [index, setIndex] = useState(null);
   const [flag, setFlag] = useState({
-    whiteFlagID: "",
-    date: "",
-    time: "",
     title: "",
     content: "",
-    isSolved: false,
-    comments: "",
   });
 
   const user = useSelector(selectUser);
@@ -33,7 +28,7 @@ const WhiteFlags = () => {
     const newFlag = {
       whiteFlagID: uuidv4(),
       date: new Date().toLocaleDateString(),
-      time: new Date().toLocalTimeStamp(),
+      time: new Date().toLocaleTimeString(),
       title: flag.title,
       content: flag.content,
       isSolved: false,
@@ -74,9 +69,9 @@ const WhiteFlags = () => {
             <div className="bg-red-500 basis-1/2 m-1">
               <InputBox
                 text="Get help: Post a White Flag"
+                setFlag={setFlag}
                 title={flag.title}
                 content={flag.content}
-                setFlag={setFlag}
                 onSubmit={onSubmitFlag}
               />
             </div>
