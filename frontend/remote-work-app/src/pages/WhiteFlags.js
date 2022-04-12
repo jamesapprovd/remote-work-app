@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ADD_FLAG } from "../redux/userSlice";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import EmployeeCard from "../components/EmployeeCard";
 
 const WhiteFlags = () => {
   const [index, setIndex] = useState(null);
@@ -53,27 +54,39 @@ const WhiteFlags = () => {
 
   return (
     <>
-      <div className="flex flex-row">
-        <div className="flex flex-col basis-1/6">
-          <div className="flex bg-purple-400 h-16">Logo</div>
-          <div>User</div>
-          <EmployeeColumn />
-        </div>
-        <div className="flex flex-col basis-5/6">
-          <NavBar />
-          <div className="flex flex-row">
-            <div className="bg-red-500 basis-1/2 m-1">
-              <InputBox
-                text="Get help: Post a White Flag"
-                setFlag={setFlag}
-                title={flag.title}
-                content={flag.content}
-                onSubmit={onSubmitFlag}
-              />
+      <div className="flex flex-col">
+        <NavBar />
+        <div className="flex flex-row basis-5/6">
+          <div className="flex flex-col w-52 p-2 h-screen">
+            <EmployeeCard
+              img={user.img}
+              username={user.username}
+              position={user.position}
+              status={user.status}
+            />
+            <p>Your Team:</p>
+            <EmployeeColumn />
+          </div>
+
+          <div className="basis-5/6 p-4 flex flex-row justify-evenly">
+            <div className="flex flex-col basis-1/2 border-t border-purple p-2">
+              <div className="shadow-inner shadow-green m-2">
+                <span className="pl-4 self-start font-bold text-2xl text-green drop-shadow-md">
+                  White Flags
+                </span>
+                <WhiteFlagCard index={index} setIndex={setIndex} />
+              </div>
             </div>
-            <div className="bg-green-500 basis-1/2 m-1 h-screen">
-              White Flags
-              <WhiteFlagCard index={index} setIndex={setIndex} />
+            <div className="flex flex-col basis-1/2 border-t border-green p-2">
+              <div className=" m-2">
+                <InputBox
+                  text="Get help: Post a White Flag"
+                  setFlag={setFlag}
+                  title={flag.title}
+                  content={flag.content}
+                  onSubmit={onSubmitFlag}
+                />
+              </div>
             </div>
           </div>
         </div>

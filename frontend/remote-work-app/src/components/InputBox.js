@@ -30,12 +30,12 @@ const InputBox = (props) => {
   };
 
   return (
-    <div className="m-4 p-4 border-2 border-lavender rounded-md">
+    <div className="m-4 p-4 border-2 rounded-md">
       <form onSubmit={props.onSubmit}>
         <label>Enter a new Entry:</label>
         <div className="flex flex-col w-auto">
           <input
-            className="bg-lilac border-2 border-lavender focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
+            className="bg-lightgreen border focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
             type="text"
             placeholder="title"
             onChange={onChangeTitle}
@@ -43,7 +43,7 @@ const InputBox = (props) => {
             value={props.title}
           />
           <textarea
-            className="bg-lilac border-2 border-lavender focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
+            className="bg-lightgreen border focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
             rows="5"
             placeholder="description"
             onChange={onChangeContent}
