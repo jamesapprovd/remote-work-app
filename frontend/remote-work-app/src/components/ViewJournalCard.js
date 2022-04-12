@@ -13,10 +13,6 @@ const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black float-right px-1";
 
 const ViewJournalCard = (props) => {
-  // const [journal, setJournal] = useState({
-  //   title: "",
-  //   content: "",
-  // });
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 

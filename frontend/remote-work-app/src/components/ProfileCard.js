@@ -27,6 +27,7 @@ const ProfileCard = () => {
 
     // const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
     const newJournal = {
+      author: name,
       journalId: uuidv4(),
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),

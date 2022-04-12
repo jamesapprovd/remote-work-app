@@ -19,8 +19,9 @@ const seedUsersData = [
     interactionCount: 5,
     workJournal: [
       {
+        author: "James",
         journalId: "1",
-        date: "6/4/2022",
+        date: "06/04/2022",
         time: "20:45",
         title: "Logos Creation",
         content: "I created a few awesome logos for the company!",
@@ -41,10 +42,11 @@ const seedUsersData = [
         ],
       },
       {
+        author: "James",
         journalId: "2",
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "930",
-        title: "Puntuality",
+        title: "Punctuality",
         content: "Reached campus on time and got my coffee!",
         private: false,
         comments: [
@@ -94,8 +96,9 @@ const seedUsersData = [
     interactionCount: 0,
     workJournal: [
       {
+        author: "Sing Hian",
         journalId: "3",
-        date: "6/4/2022",
+        date: "06/04/2022",
         time: "2056",
         title: "React",
         content: "I created routes and pages!",
@@ -116,8 +119,9 @@ const seedUsersData = [
         ],
       },
       {
+        author: "Sing Hian",
         journalId: "4",
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "1000",
         title: "Lunch",
         content: "What are we eating for lunch today?",
@@ -170,8 +174,9 @@ const seedUsersData = [
     interactionCount: 0,
     workJournal: [
       {
+        author: "Sharlyn",
         journalId: "5",
-        date: "6/4/2022",
+        date: "06/04/2022",
         time: "2045",
         title: "Userflow wireframes",
         content: "Wireframes done and presented to GA",
@@ -192,8 +197,9 @@ const seedUsersData = [
         ],
       },
       {
+        author: "Sharlyn",
         journalId: "6",
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "1530",
         title: "Efficiency",
         content: "Finished the main page component",
@@ -246,8 +252,9 @@ const seedUsersData = [
     interactionCount: 2,
     workJournal: [
       {
+        author: "Worker1",
         journalId: "7",
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "1200",
         title: "Coded component A",
         content: "Component A coded for CTO",
@@ -262,8 +269,9 @@ const seedUsersData = [
         ],
       },
       {
+        author: "Worker1",
         journalId: "8",
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "1659",
         title: "Coded component B",
         content: "Component B coded per CTO's request",
@@ -311,7 +319,9 @@ const seedUsersData = [
     interactionCount: 3,
     workJournal: [
       {
-        date: "8/4/2022",
+        author: "Worker2",
+        journalId: "9",
+        date: "08/04/2022",
         time: "1200",
         title: "Coded component D",
         content: "Component D coded for CTO",
@@ -326,7 +336,9 @@ const seedUsersData = [
         ],
       },
       {
-        date: "8/4/2022",
+        author: "Worker2",
+        journalId: "10",
+        date: "08/04/2022",
         time: "1659",
         title: "Coded component E",
         content: "Component E coded per CTO's request",
@@ -372,7 +384,8 @@ const seedUsersData = [
     interactionCount: 2,
     workJournal: [
       {
-        date: "7/4/2022",
+        author: "MinionA",
+        date: "07/04/2022",
         time: "1100",
         title: "Graphic User Interface",
         content: "GUI colour research",
@@ -387,7 +400,8 @@ const seedUsersData = [
         ],
       },
       {
-        date: "7/4/2022",
+        author: "MinionA",
+        date: "07/04/2022",
         time: "1655",
         title: "Button A design",
         content: "Changed location of button A on main page",
@@ -434,7 +448,8 @@ const seedUsersData = [
     interactionCount: 2,
     workJournal: [
       {
-        date: "8/4/2022",
+        author: "MinionB",
+        date: "08/04/2022",
         time: "1101",
         title: "Marketing Plans 2022",
         content: "Drafted marketing plans for 2022",
@@ -449,7 +464,8 @@ const seedUsersData = [
         ],
       },
       {
-        date: "8/4/2022",
+        author: "MinionB",
+        date: "08/04/2022",
         time: "1555",
         title: "Market Research Survey",
         content: "Completed Market Research for Singapore market",

@@ -10,18 +10,27 @@ const buttonStyle =
 const AllJournalsCard = (props) => {
   const users = useSelector(selectUsersData);
   const [hasViewed, setHasViewed] = useState(false);
+  const [allJournals, setAllJournals] = useState([]);
 
   const handleView = (event) => {
     console.log();
     props.setIndex(event.target.parentNode.id);
     setHasViewed(true);
   };
+  useEffect(() => {
+    axios.get("http://localhost:5001/workJournal/all").then((res) => {
+      const data = res.data;
+      setAllJournals(data);
+      return;
+    });
+  }, []);
+  console.log(allJournals);
 
   return (
     <>
-      <div className="text-left">
-        {users.map((user) => {
-          return user.workJournal.map((element, index) => {
+      {allJournals.length > 0 ? (
+        <div className="text-left">
+          {allJournals.map((element, index) => {
             return (
               <div
                 id={index}
@@ -29,23 +38,31 @@ const AllJournalsCard = (props) => {
                 className=" flex flex-col shadow-md shadow-purple border border-lavender rounded-lg m-2 p-2"
               >
                 <p className="text-sm">
-                  {element.date}, {element.time}
+                  {element.workJournal.date}, {element.workJournal.time}
                 </p>
-                <p className="font-bold border-b">{element.title}</p>
-                <p className="text-sm">{element.content}</p>
+                <p className="font-bold border-b">
+                  {element.workJournal.title}
+                </p>
+                <p className="text-sm">{element.workJournal.content}</p>
                 <p className="font-bold text-[13px] border-y border-lavender">
-                  Comments ({element.comments.length})
+                  Comments ({element.workJournal.comments.length})
                 </p>
-                <div className="flex flex-row-reverse" id={index}>
+                <div
+                  className="flex flex-row-reverse justify-between"
+                  id={index}
+                >
                   <button className={buttonStyle} onClick={handleView}>
                     View
                   </button>
+                  <p>Posted by: {element.workJournal.author}</p>
                 </div>
               </div>
             );
-          });
-        })}
-      </div>
+          })}
+        </div>
+      ) : (
+        <p>test</p>
+      )}
     </>
   );
 };
