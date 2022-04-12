@@ -15,13 +15,13 @@ const AllJournalsCard = (props) => {
     props.setIndex(event.target.parentNode.id);
     setHasViewed(true);
   };
+
   useEffect(() => {
     axios.get("http://localhost:5001/workJournal/all").then((res) => {
       const data = res.data;
       setAllJournals(data);
     });
   }, []);
-  console.log(allJournals);
 
   return (
     <>

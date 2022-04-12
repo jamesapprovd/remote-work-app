@@ -67,7 +67,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
-        date: "6/4/2022",
+        date: "06/04/2022",
         time: "1901",
         title: "Need help with day 7 homework!",
         content: "Why doesn't my create work in postman?",
@@ -144,7 +144,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
-        date: "6/4/2022",
+        date: "06/04/2022",
         time: "1901",
         title: "Help!",
         content: "Redux is so confusing!",
@@ -222,7 +222,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "1800",
         title: "Laptop monitor too small",
         content: "How can I increase my work productivity?",
@@ -288,7 +288,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "1800",
         title: "Component C",
         content: "How to prop chicken from component B to component C?",
@@ -355,7 +355,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
-        date: "8/4/2022",
+        date: "08/04/2022",
         time: "1800",
         title: "Component F",
         content: "Where do I change my state?",
@@ -418,7 +418,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
-        date: "7/4/2022",
+        date: "07/04/2022",
         time: "1800",
         title: "Design Theme",
         content: "What would be the best design theme for the website?",
@@ -482,7 +482,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
-        date: "8/4/2022",
+        date: "08/04/2022",
         time: "0059",
         title: "Marketing strategy",
         content:
