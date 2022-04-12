@@ -5,8 +5,8 @@ import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import EmployeeCard from "../components/EmployeeCard";
 import logo from "../images/Logo.png";
-import JournalCard from "../components/JournalCard";
 import AllJournalsCard from "../components/AllJournalsCard";
+import AllWhiteFlagsCard from "../components/AllWhiteFlagsCard";
 
 const Main = () => {
   const user = useSelector(selectUser);
@@ -32,10 +32,13 @@ const Main = () => {
           <NavBar />
           <div className="flex flex-row">
             <div className="bg-lilac rounded-lg basis-1/2 m-1">
-              {/* <JournalCard index={index} setIndex={setIndex} /> */}
+              <span className="font-bold">Work Journals</span>
               <AllJournalsCard index={index} setIndex={setIndex} />
             </div>
-            <div className="bg-lilac rounded-lg basis-1/2 m-1">White Flags</div>
+            <div className="bg-lilac rounded-lg basis-1/2 m-1">
+              <span className="font-bold">White Flags</span>
+              <AllWhiteFlagsCard index={index} setIndex={setIndex} />
+            </div>
           </div>
         </div>
       </div>

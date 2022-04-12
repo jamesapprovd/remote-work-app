@@ -75,6 +75,15 @@ whiteFlagRouter.delete("/delete", async (req, res) => {
   res.json({ status: "ok", message: "White flag deleted " });
 });
 
+whiteFlagRouter.get("/all", async (req, res) => {
+  const allWhiteFlags = await Users.aggregate([
+    { $unwind: "$whiteFlag" },
+    { $project: { whiteFlag: 1, _id: 0 } },
+    { $sort: { "whiteFlag.date": -1, "whiteFlag.time": -1 } },
+  ]);
+  res.json(allWhiteFlags);
+});
+
 // solved //
 // whiteFlagRouter.put("/solved", async (req, res) => {
 //   const solvedFlag = await Users.findOneAndUpdate(

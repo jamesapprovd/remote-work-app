@@ -59,6 +59,11 @@ export const userSlice = createSlice({
       state.whiteFlag.push(newFlag);
     },
 
+    // tried to add all journals data but not very sure how to do it
+    // ALL_JOURNALS(state, action) {
+    //   state.allJournals = action.payload;
+    // },
+
     // REMOVE_FLAG: (state, action) => {
     //   const filteredFlags = state.whiteFlag.filter(
     //     (flag) => flag.whiteFlagId !== action.payload
@@ -75,6 +80,7 @@ export const {
   REMOVE_JOURNAL,
   EDIT_JOURNAL,
   ADD_FLAG,
+  // ALL_JOURNALS,
 } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;

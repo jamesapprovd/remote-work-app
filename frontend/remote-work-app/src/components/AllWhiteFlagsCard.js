@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import ViewAllJournalsCard from "./ViewAllJournalsCard";
+import ViewAllWhiteFlagsCard from "./ViewAllWhiteFlagsCard";
 
 const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
 
-const AllJournalsCard = (props) => {
+const AllWhiteFlagsCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
-  const [allJournals, setAllJournals] = useState([]);
+  const [allWhiteFlags, setAllWhiteFlags] = useState([]);
 
   const handleView = (event) => {
     console.log();
@@ -17,17 +17,18 @@ const AllJournalsCard = (props) => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5001/workJournal/all").then((res) => {
+    axios.get("http://localhost:5001/whiteFlags/all").then((res) => {
       const data = res.data;
-      setAllJournals(data);
+      setAllWhiteFlags(data);
     });
   }, []);
+  console.log(allWhiteFlags);
 
   return (
     <>
       {!hasViewed ? (
         <div className="text-left">
-          {allJournals.map((element, index) => {
+          {allWhiteFlags.map((element, index) => {
             return (
               <div
                 id={index}
@@ -35,14 +36,12 @@ const AllJournalsCard = (props) => {
                 className=" flex flex-col shadow-md shadow-purple border border-lavender rounded-lg m-2 p-2"
               >
                 <p className="text-sm">
-                  {element.workJournal.date}, {element.workJournal.time}
+                  {element.whiteFlag.date}, {element.whiteFlag.time}
                 </p>
-                <p className="font-bold border-b">
-                  {element.workJournal.title}
-                </p>
-                <p className="text-sm">{element.workJournal.content}</p>
+                <p className="font-bold border-b">{element.whiteFlag.title}</p>
+                <p className="text-sm">{element.whiteFlag.content}</p>
                 <p className="font-bold text-[13px] border-y border-lavender">
-                  Comments ({element.workJournal.comments.length})
+                  Comments ({element.whiteFlag.comments.length})
                 </p>
                 <div
                   className="flex flex-row-reverse justify-between"
@@ -51,7 +50,6 @@ const AllJournalsCard = (props) => {
                   <button className={buttonStyle} onClick={handleView}>
                     View
                   </button>
-                  <p>Posted by: {element.workJournal.author}</p>
                 </div>
               </div>
             );
@@ -59,10 +57,10 @@ const AllJournalsCard = (props) => {
         </div>
       ) : (
         <>
-          <ViewAllJournalsCard
+          <ViewAllWhiteFlagsCard
             index={props.index}
             setHasViewed={setHasViewed}
-            allJournals={allJournals}
+            allWhiteFlags={allWhiteFlags}
           />
         </>
       )}
@@ -70,4 +68,4 @@ const AllJournalsCard = (props) => {
   );
 };
 
-export default AllJournalsCard;
+export default AllWhiteFlagsCard;
