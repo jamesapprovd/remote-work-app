@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import ViewJournalCard from "./ViewJournalCard.js";
 import { v4 as uuidv4 } from "uuid";
-import { selectUser } from "../redux/userSlice";
-import { useSelector } from "react-redux";
+import {
+  selectUser,
+  selectWorkJournal,
+  REMOVE_JOURNAL,
+} from "../redux/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 const buttonStyle =
@@ -12,6 +16,8 @@ const JournalCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
 
   const user = useSelector(selectUser);
+  const workJournal = useSelector(selectWorkJournal);
+  const dispatch = useDispatch();
 
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id);
@@ -35,13 +41,14 @@ const JournalCard = (props) => {
           console.log("hi5", res.data);
         }
       });
+    // dispatch(REMOVE_JOURNAL(journalId));
   };
 
   return (
     <>
       {!hasViewed ? (
         <div className="text-left">
-          {user.workJournal.map((element, index) => {
+          {workJournal.map((element, index) => {
             return (
               <div
                 id={index}

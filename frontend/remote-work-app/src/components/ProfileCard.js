@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import InputBox from "./InputBox";
 import { selectUser } from "../redux/userSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { ADD_JOURNAL } from "../redux/userSlice";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,6 +14,8 @@ const ProfileCard = () => {
     content: "",
   });
   const user = useSelector(selectUser);
+
+  const dispatch = useDispatch();
 
   let profileImage = user.img;
   let name = user.username;
@@ -29,7 +32,7 @@ const ProfileCard = () => {
       time: new Date().toLocaleTimeString(),
       title: journal.title,
       content: journal.content,
-      comment: [],
+      comments: [],
     };
     // dispatch(ADD_JOURNAL({ workJournal: { ...newJournal } }));
     let userId = user.userId;
@@ -49,24 +52,7 @@ const ProfileCard = () => {
           console.log("hi5", res.data);
         }
       });
-    //   try {
-    //     const res = await fetch(`http://127.0.0.1:5001/workJournal/new`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         mode: "no-cors",
-    //       },
-    //       body: JSON.stringify({
-    //         title: title,
-    //         description: description,
-    //       }),
-    //     });
-    //     const data = await res.json();
-    //     console.log(data);
-    //   } catch (err) {
-    //     console.log(err.message);
-    //   }
-    // };
+    dispatch(ADD_JOURNAL(newJournal));
   };
 
   // not sure how the axios syntax work, haven't installed axios yet
