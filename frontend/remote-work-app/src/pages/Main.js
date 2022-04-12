@@ -29,7 +29,7 @@ const Main = () => {
           </div>
           <div className="p-4 flex flex-row justify-evenly">
             <div className="flex flex-col basis-1/2 border-t border-purple p-2">
-              <span className="pl-4 self-start font-bold text-2xl text-purple">
+              <span className="pl-4 self-start font-bold text-2xl text-purple drop-shadow-md">
                 Work Journals
               </span>
               <div className="shadow-inner shadow-purple m-2">
@@ -37,7 +37,7 @@ const Main = () => {
               </div>
             </div>
             <div className="flex flex-col basis-1/2 border-t border-green p-2">
-              <span className="pl-4 self-start font-bold text-2xl text-green">
+              <span className="pl-4 self-start font-bold text-2xl text-green drop-shadow-md">
                 White Flags
               </span>
               <div className="shadow-inner shadow-green m-2">
