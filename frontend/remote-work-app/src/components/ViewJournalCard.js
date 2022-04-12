@@ -5,31 +5,25 @@ import {
   selectUser,
   selectWorkJournal,
   EDIT_JOURNAL,
+  NEW_COMMENT,
+  DEL_COMMENT,
 } from "../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import CommentInputBox from "./CommentInputBox.js";
 
 const buttonStyle =
-  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black float-right px-1";
+  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black float-right ml-1 px-1";
 
 const ViewJournalCard = (props) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
-  const [hasEdit, setHasEdit] = useState(false);
-
-  const user = useSelector(selectUser);
-  const workJournal = useSelector(selectWorkJournal);
-
-  let journalData = workJournal[props.index];
-
-  const dispatch = useDispatch();
-
   // this changes the view from individual journal to all journals
   const handleClose = () => {
     props.setHasViewed(false);
   };
 
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [hasEdit, setHasEdit] = useState(false);
   // this shows view for edit with default value
   const handleEdit = (event) => {
     event.preventDefault();
@@ -37,6 +31,11 @@ const ViewJournalCard = (props) => {
     setContent(journalData.content);
     setHasEdit(true);
   };
+
+  const user = useSelector(selectUser);
+  const workJournal = useSelector(selectWorkJournal);
+  let journalData = workJournal[props.index];
+  const dispatch = useDispatch();
 
   // this is not working yet, doesn't update anything
   const handleUpdate = (event) => {
@@ -65,6 +64,30 @@ const ViewJournalCard = (props) => {
     setHasEdit(false);
   };
 
+  //add comment
+  const [comment, setComment] = useState("");
+  const selectedJournalId = journalData.journalId;
+  const onChangeComment = (e) => setComment(e.target.value);
+  const onSubmitComment = (e) => {
+    e.preventDefault();
+    const newComment = {
+      commentId: uuidv4(),
+      username: user.username,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      comment: comment,
+    };
+    dispatch(NEW_COMMENT({ newComment, selectedJournalId }));
+    setComment("");
+  };
+
+  //del comment
+  const onClickDel = (e) => {
+    e.preventDefault();
+    const commentId = e.target.value;
+    dispatch(DEL_COMMENT({ selectedJournalId, commentId }));
+  };
+
   return (
     <>
       {hasEdit ? (
@@ -77,7 +100,7 @@ const ViewJournalCard = (props) => {
         />
       ) : (
         <div className="bg-white text-left">
-          <div className="shadow-md shadow-purple border border-lavender rounded-lg mx-2 my-2 px-1 py-8">
+          <div className="shadow-md shadow-purple border border-lavender rounded-lg m-2 px-1 py-8">
             <p>
               {journalData.date}, {journalData.time}
             </p>
@@ -91,7 +114,20 @@ const ViewJournalCard = (props) => {
               return (
                 <div className="border-t border-purple" key={uuidv4()}>
                   <p className="font-bold text-sm">{element.username}</p>
-                  <p className="text-sm">{element.comment}</p>
+                  <div className="flex justify-between">
+                    <p className="text-sm">{element.comment}</p>
+                    {user.username === element.username ? (
+                      <button
+                        value={element.commentId}
+                        onClick={onClickDel}
+                        className={buttonStyle}
+                      >
+                        Del
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                   <p className="text-sm">
                     {element.date}, {element.time}
                   </p>
@@ -99,6 +135,12 @@ const ViewJournalCard = (props) => {
                 </div>
               );
             })}
+            <CommentInputBox
+              journalData={journalData}
+              comment={comment}
+              onChangeComment={onChangeComment}
+              onSubmitComment={onSubmitComment}
+            />
             <button className={buttonStyle} onClick={handleClose}>
               Close
             </button>
