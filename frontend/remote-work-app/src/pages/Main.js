@@ -27,14 +27,22 @@ const Main = () => {
             <p>Your Team:</p>
             <EmployeeColumn />
           </div>
-          <div className="flex flex-row justify-evenly">
-            <div className="shadow-inner shadow-purple  basis-1/2 m-1">
-              <span className="font-bold">Work Journals</span>
-              <AllJournalsCard index={index} setIndex={setIndex} />
+          <div className="p-4 flex flex-row justify-evenly">
+            <div className="flex flex-col basis-1/2 border-t border-purple p-2">
+              <span className="pl-4 self-start font-bold text-2xl text-purple">
+                Work Journals
+              </span>
+              <div className="shadow-inner shadow-purple m-2">
+                <AllJournalsCard index={index} setIndex={setIndex} />
+              </div>
             </div>
-            <div className="shadow-inner shadow-green basis-1/2 m-1">
-              <span className="font-bold">White Flags</span>
-              <AllWhiteFlagsCard index={index} setIndex={setIndex} />
+            <div className="flex flex-col basis-1/2 border-t border-green p-2">
+              <span className="pl-4 self-start font-bold text-2xl text-green">
+                White Flags
+              </span>
+              <div className="shadow-inner shadow-green m-2">
+                <AllWhiteFlagsCard index={index} setIndex={setIndex} />
+              </div>
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ const NavBar = () => {
   };
   return (
     <>
-      <header className="border-b border-purple flex flex-row justify-between">
+      <header className="flex flex-row justify-between">
         <img className="w-44 m-5" src={logo} alt="REMOTR" />
         <div className="h-fit basis-full flex flex-row justify-between my-16">
           <nav>
