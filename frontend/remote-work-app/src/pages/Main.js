@@ -30,12 +30,12 @@ const Main = () => {
         </div>
         <div className=" flex flex-col basis-5/6">
           <NavBar />
-          <div className="flex flex-row">
-            <div className="bg-lilac rounded-lg basis-1/2 m-1">
+          <div className="flex flex-row justify-evenly">
+            <div className="shadow-inner shadow-purple  basis-1/2 m-1">
               <span className="font-bold">Work Journals</span>
               <AllJournalsCard index={index} setIndex={setIndex} />
             </div>
-            <div className="bg-lilac rounded-lg basis-1/2 m-1">
+            <div className="shadow-inner shadow-green basis-1/2 m-1">
               <span className="font-bold">White Flags</span>
               <AllWhiteFlagsCard index={index} setIndex={setIndex} />
             </div>
