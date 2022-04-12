@@ -25,8 +25,8 @@ const usersSchema = Schema(
         comments: [
           {
             username: { type: String },
-            date: { type: Date },
-            time: { type: Number },
+            date: { type: String },
+            time: { type: String },
             comment: { type: String },
           },
         ],
