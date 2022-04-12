@@ -29,9 +29,17 @@ export const userSlice = createSlice({
       };
       state.workJournal.push(newJournal);
     },
+
     REMOVE_JOURNAL: (state, action) => {
-      state.filter((journal) => journal.journalId !== action.payload.journalId);
+      const filteredJournals = state.workJournal.filter(
+        (journal) => journal.journalId !== action.payload
+      );
+      state.workJournal = filteredJournals;
     },
+
+    // EDIT_JOURNAL: (state, action) => {
+
+    // }
   },
 });
 

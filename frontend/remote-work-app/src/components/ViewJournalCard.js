@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import EditForm from "./EditForm.js";
-import { selectUser } from "../redux/userSlice";
+import { selectUser, selectWorkJournal } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -19,8 +19,9 @@ const ViewJournalCard = (props) => {
   const [hasEdit, setHasEdit] = useState(false);
 
   const user = useSelector(selectUser);
+  const workJournal = useSelector(selectWorkJournal);
 
-  let journalData = user.workJournal[props.index];
+  let journalData = workJournal[props.index];
 
   // this changes the view from individual journal to all journals
   const handleClose = () => {

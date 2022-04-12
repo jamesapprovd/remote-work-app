@@ -28,7 +28,8 @@ const JournalCard = (props) => {
     event.preventDefault();
     let userId = user.userId;
     let journalId =
-      user.workJournal[event.target.parentNode.parentNode.id].journalId;
+      workJournal[event.target.parentNode.parentNode.id].journalId;
+    console.log("before", workJournal);
     axios
       .post(`http://127.0.0.1:5001/workJournal/delete`, {
         userId,
@@ -41,7 +42,8 @@ const JournalCard = (props) => {
           console.log("hi5", res.data);
         }
       });
-    // dispatch(REMOVE_JOURNAL(journalId));
+    dispatch(REMOVE_JOURNAL(journalId));
+    console.log("after", workJournal);
   };
 
   return (
