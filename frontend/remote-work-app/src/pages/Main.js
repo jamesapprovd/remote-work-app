@@ -27,7 +27,8 @@ const Main = () => {
             <p>Your Team:</p>
             <EmployeeColumn />
           </div>
-          <div className="p-4 flex flex-row justify-evenly">
+
+          <div className="basis-5/6 p-4 flex flex-row justify-evenly">
             <div className="flex flex-col basis-1/2 border-t border-purple p-2">
               <span className="pl-4 self-start font-bold text-2xl text-purple drop-shadow-md">
                 Work Journals

@@ -37,10 +37,10 @@ const AllJournalsCard = (props) => {
                 <p className="text-sm">
                   {element.workJournal.date}, {element.workJournal.time}
                 </p>
-                <p className="font-bold border-b py-2 ">
+                <p className="font-bold border-b py-2">
                   {element.workJournal.title}
                 </p>
-                <p className="text-sm p-4 ">{element.workJournal.content}</p>
+                <p className="text-sm p-4">{element.workJournal.content}</p>
                 <p className="py-1 text-center font-bold text-[13px] border-y border-lavender">
                   Comments ({element.workJournal.comments.length})
                 </p>
