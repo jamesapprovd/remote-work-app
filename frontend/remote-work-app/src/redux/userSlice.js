@@ -65,6 +65,24 @@ export const userSlice = createSlice({
     //   );
     //   state.whiteFlag = filteredFlags;
     // },
+
+    NEW_COMMENT: (state, action) => {
+      const newComment = action.payload.newComment;
+      const journalIndex = state.workJournal.findIndex(
+        (journal) => journal.journalId === action.payload.selectedJournalId
+      );
+      state.workJournal[journalIndex].comments.push(newComment);
+    },
+
+    DEL_COMMENT: (state, action) => {
+      const journalIndex = state.workJournal.findIndex(
+        (journal) => journal.journalId === action.payload.selectedJournalId
+      );
+      const filteredComments = state.workJournal[journalIndex].comments.filter(
+        (comment) => comment.commentId !== action.payload.commentId
+      );
+      state.workJournal[journalIndex].comments = filteredComments;
+    },
   },
 });
 
@@ -75,6 +93,8 @@ export const {
   REMOVE_JOURNAL,
   EDIT_JOURNAL,
   ADD_FLAG,
+  NEW_COMMENT,
+  DEL_COMMENT,
 } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;

@@ -24,6 +24,7 @@ const usersSchema = Schema(
         private: { type: Boolean, default: true },
         comments: [
           {
+            commentId: { type: String },
             username: { type: String },
             date: { type: Date },
             time: { type: Number },
