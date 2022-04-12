@@ -14,15 +14,14 @@ const buttonStyle =
 
 const JournalCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
-
-  const user = useSelector(selectUser);
-  const workJournal = useSelector(selectWorkJournal);
-  const dispatch = useDispatch();
-
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id);
     setHasViewed(true);
   };
+
+  const user = useSelector(selectUser);
+  const workJournal = useSelector(selectWorkJournal);
+  const dispatch = useDispatch();
 
   const handleDelete = (event) => {
     event.preventDefault();
