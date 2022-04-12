@@ -52,7 +52,7 @@ const JournalCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className="flex flex-col border border-purple bg-lilac rounded-md m-4 p-2"
+                className="flex flex-col bg-lilac rounded-md m-4 p-2"
               >
                 <p className="text-sm">
                   {element.date}, {element.time}

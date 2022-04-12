@@ -5,7 +5,7 @@ const placeholderImg =
 const EmployeeCard = (props) => {
   // console.log("employee card", props.username);
   return (
-    <div className="flex flex-row rounded-lg w-auto h-22 shadow-md shadow-purple border border-lavender p-2 my-1">
+    <div className="flex flex-row rounded-lg w-auto h-22 shadow-md shadow-black border border-lavender p-2 my-1">
       <div className="flex w-16 p-1">
         <img
           className="self-center"

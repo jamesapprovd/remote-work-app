@@ -44,7 +44,7 @@ const WhiteFlagCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className="flex flex-col border border-green bg-lightgreen rounded-md m-4 p-2" //want to make it white instead of purple
+                className="flex flex-col bg-lightgreen rounded-md m-4 p-2" //want to make it white instead of purple
               >
                 <p className="text-sm">
                   {element.date}, {element.time}

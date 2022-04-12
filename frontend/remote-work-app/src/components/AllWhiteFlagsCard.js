@@ -33,7 +33,7 @@ const AllWhiteFlagsCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className="flex flex-col border border-green bg-lightgreen rounded-lg m-4 p-2"
+                className="flex flex-col bg-lightgreen rounded-lg m-4 p-2"
               >
                 <p className="text-sm">
                   {element.whiteFlag.date}, {element.whiteFlag.time}

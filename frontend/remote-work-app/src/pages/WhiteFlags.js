@@ -70,15 +70,15 @@ const WhiteFlags = () => {
 
           <div className="basis-5/6 p-4 flex flex-row justify-evenly">
             <div className="flex flex-col basis-1/2 border-t border-purple p-2">
+              <span className="pl-4 self-start font-bold text-2xl text-green drop-shadow-md">
+                White Flags
+              </span>
               <div className="shadow-inner shadow-green m-2">
-                <span className="pl-4 self-start font-bold text-2xl text-green drop-shadow-md">
-                  White Flags
-                </span>
                 <WhiteFlagCard index={index} setIndex={setIndex} />
               </div>
             </div>
             <div className="flex flex-col basis-1/2 border-t border-green p-2">
-              <div className=" m-2">
+              <div className="my-6">
                 <InputBox
                   text="Get help: Post a White Flag"
                   setFlag={setFlag}
