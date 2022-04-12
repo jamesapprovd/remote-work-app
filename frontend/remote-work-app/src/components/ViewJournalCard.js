@@ -16,23 +16,14 @@ const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black float-right ml-1 px-1";
 
 const ViewJournalCard = (props) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
-  const [hasEdit, setHasEdit] = useState(false);
-
-  const user = useSelector(selectUser);
-  const workJournal = useSelector(selectWorkJournal);
-
-  let journalData = workJournal[props.index];
-
-  const dispatch = useDispatch();
-
   // this changes the view from individual journal to all journals
   const handleClose = () => {
     props.setHasViewed(false);
   };
 
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [hasEdit, setHasEdit] = useState(false);
   // this shows view for edit with default value
   const handleEdit = (event) => {
     event.preventDefault();
@@ -40,6 +31,11 @@ const ViewJournalCard = (props) => {
     setContent(journalData.content);
     setHasEdit(true);
   };
+
+  const user = useSelector(selectUser);
+  const workJournal = useSelector(selectWorkJournal);
+  let journalData = workJournal[props.index];
+  const dispatch = useDispatch();
 
   // this is not working yet, doesn't update anything
   const handleUpdate = (event) => {
@@ -67,8 +63,8 @@ const ViewJournalCard = (props) => {
     console.log("hi2");
     setHasEdit(false);
   };
-  /////
 
+  //add comment
   const [comment, setComment] = useState("");
   const selectedJournalId = journalData.journalId;
   const onChangeComment = (e) => setComment(e.target.value);
@@ -85,13 +81,13 @@ const ViewJournalCard = (props) => {
     setComment("");
   };
 
+  //del comment
   const onClickDel = (e) => {
     e.preventDefault();
     const commentId = e.target.value;
     dispatch(DEL_COMMENT({ selectedJournalId, commentId }));
   };
 
-  //////
   return (
     <>
       {hasEdit ? (
