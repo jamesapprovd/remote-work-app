@@ -4,7 +4,10 @@ import EditForm from "./EditForm.js";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 
-const ViewWhiteFlagCard = () => {
+const buttonStyle =
+  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
+
+const ViewWhiteFlagCard = (props) => {
   const [whiteFlag, setWhiteFlag] = useState({
     title: "",
     content: "",
@@ -24,10 +27,10 @@ const ViewWhiteFlagCard = () => {
   const handleEdit = (event) => {
     event.preventDefault();
     setWhiteFlag((prevState) => {
-      return { ...prevState, title: whiteflag.title }; //To discuss with @Sharlyn
+      return { ...prevState, title: whiteFlag.title }; //To discuss with @Sharlyn
     });
     setWhiteFlag((prevState) => {
-      return { ...prevState, content: whiteflag.content };
+      return { ...prevState, content: whiteFlag.content };
     });
     setHasEdit(true);
   };
@@ -42,10 +45,10 @@ const ViewWhiteFlagCard = () => {
     <>
       {hasEdit ? (
         <EditForm
-          title={whiteflag.title}
-          content={whiteflag.content}
+          title={whiteFlag.title}
+          content={whiteFlag.content}
           setWhiteFlag={setWhiteFlag}
-          onSubmit={handleUpdate}
+          // onSubmit={handleUpdate}
         />
       ) : (
         <div className="bg-white text-left">

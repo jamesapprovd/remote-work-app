@@ -3,7 +3,6 @@ import NavBar from "../components/NavBar";
 import EmployeeColumn from "../components/EmployeeColumn";
 import InputBox from "../components/InputBox";
 import WhiteFlagCard from "../components/WhiteFlagCard";
-import { useState } from "react";
 
 const WhiteFlags = () => {
   const [index, setIndex] = useState(null);

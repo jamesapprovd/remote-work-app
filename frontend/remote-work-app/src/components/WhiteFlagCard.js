@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
+import ViewWhiteFlagCard from "./ViewWhiteFlagCard";
+
+const buttonStyle =
+  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
 
 const WhiteFlagCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
@@ -40,27 +44,26 @@ const WhiteFlagCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className="" //want to make it white instead of purple
+                className="flex flex-col shadow-md shadow-purple border border-lavender rounded-lg m-2 p-2" //want to make it white instead of purple
               >
                 <p className="text-sm">
                   {element.date}, {element.time}
                 </p>
                 <p className="font-bold border-b">{element.title}</p>
                 <p className="text-sm">{element.content}</p>
-                <p className="">
-                  {" "}
+                <p className="font-bold text-[13px] border-y border-lavender">
                   {/* /want to make it white instead of purple */}
                   Comments ({element.comments.length})
                 </p>
                 <div className="flex flex-row-reverse" id={index}>
                   <button className={buttonStyle} onClick={handleView}>
-                    View
+                    View Comments
                   </button>
                   <button
                     className={buttonStyle}
                     // onClick={handleDelete}
                   >
-                    Delete
+                    Delete Flag
                   </button>
                   <button
                     className={buttonStyle}
