@@ -28,7 +28,13 @@ journalRouter.post("/new", async (req, res) => {
 
 //User - All LOGGED IN user journal views (Public and Private)
 journalRouter.get("/all", async (req, res) => {
-  const allJournals = await Users.find({}, { workJournal: 1 });
+  // const allJournals = await Users.find({}, { workJournal: 1, _id: 0 });
+  // const allJournals = await Users.find({}, { "workJournal.journalId": 1 });
+  const allJournals = await Users.aggregate([
+    { $unwind: "$workJournal" },
+    { $project: { workJournal: 1, _id: 0 } },
+    { $sort: { "workJournal.date": -1, "workJournal.time": -1 } },
+  ]);
   res.json(allJournals);
 });
 

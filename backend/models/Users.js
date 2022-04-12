@@ -15,6 +15,7 @@ const usersSchema = Schema(
     interactionCount: { type: Number },
     workJournal: [
       {
+        author: { type: String },
         journalId: { type: String },
         date: { type: String },
         time: { type: String }, //Apparently, if you save a document with an unset time field, Mongoose will fill in this field with the current time
