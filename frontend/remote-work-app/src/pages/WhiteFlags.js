@@ -56,7 +56,7 @@ const WhiteFlags = () => {
     <>
       <div className="flex flex-col">
         <NavBar />
-        <div className="flex flex-row basis-5/6">
+        <div className="pl-2 flex flex-row basis-5/6">
           <div className="flex flex-col w-52 p-2 h-screen">
             <EmployeeCard
               img={user.img}
