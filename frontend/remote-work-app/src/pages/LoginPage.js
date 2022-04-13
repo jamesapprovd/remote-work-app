@@ -58,37 +58,35 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="h-screen bg-lilac">
-        <div className="flex justify-around">
-          <div className="flex flex-col w-[50%] m-[10%] text-purple">
-            <img src={logo} alt="REMOTR" />
-            <form className="self-center w-[300px]" onSubmit={onSubmitLogin}>
-              <div className="flex flex-col w-auto">
-                <label className="text-left">Email</label>
-                <input
-                  className="border-2 border-purple rounded-md flex basis-1/6 my-2 text-center focus:outline-green"
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={onChangeEmail}
-                />
-                <label className="text-left">Password:</label>
-                <input
-                  className="border-2 border-purple rounded-md flex basis-1/6 my-2 text-center focus:outline-green"
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={onChangePassword}
-                />
-                <button
-                  type="submit"
-                  className="border-2 border-purple rounded-md w-20 my-2 self-end hover:bg-green hover:text-black"
-                >
-                  Log in
-                </button>
-              </div>
-            </form>
-          </div>
+      <div className="flex justify-around">
+        <div className=" flex flex-col w-[50%] m-[5%] text-black">
+          <img className="self-center w-[50%]" src={logo} alt="REMOTR" />
+          <form className="self-center w-[300px]" onSubmit={onSubmitLogin}>
+            <div className="flex flex-col w-auto">
+              <label className="text-left text-purple">Email</label>
+              <input
+                className="border-y border-purple flex basis-1/6 my-2 text-center focus:outline-green focus:bg-lightgreen"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={onChangeEmail}
+              />
+              <label className="text-left text-purple">Password:</label>
+              <input
+                className="border-y border-purple rounded-md flex basis-1/6 my-2 text-center focus:outline-green focus:bg-lightgreen"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={onChangePassword}
+              />
+              <button
+                type="submit"
+                className="text-black bg-green border-2 border-green rounded-md hover:border-purple hover:text-black w-20 my-2 self-end"
+              >
+                Log in
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </>

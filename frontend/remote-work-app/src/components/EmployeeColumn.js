@@ -13,6 +13,7 @@ const EmployeeColumn = () => {
         return (
           <EmployeeCard
             key={uuidv4()}
+            img={user.img}
             username={user.username}
             position={user.position}
             status={user.status}

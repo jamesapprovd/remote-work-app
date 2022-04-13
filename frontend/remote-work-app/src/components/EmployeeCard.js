@@ -3,9 +3,18 @@ import React from "react";
 const placeholderImg =
   "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png";
 const EmployeeCard = (props) => {
-  // console.log("employee card", props.username);
+  let statusColor = "shadow-black";
+  if (props.status === "online") {
+    statusColor = "shadow-green";
+  } else if (props.status === "away") {
+    statusColor = "shadow-orange";
+  } else {
+    statusColor = "shadow-grey";
+  }
+
+  const cardStyle = `flex flex-row rounded-lg w-auto h-22 shadow-md ${statusColor} border border-lavender p-2 my-2`;
   return (
-    <div className="flex flex-row rounded-lg w-auto h-22 shadow-md shadow-black border border-lavender p-2 my-1">
+    <div className={cardStyle}>
       <div className="flex w-16 p-1">
         <img
           className="self-center"
