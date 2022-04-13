@@ -23,7 +23,7 @@ const WhiteFlags = () => {
   const onSubmitFlag = (event) => {
     event.preventDefault();
     const newFlag = {
-      whiteFlagID: uuidv4(),
+      whiteFlagId: uuidv4(),
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
       title: flag.title,
