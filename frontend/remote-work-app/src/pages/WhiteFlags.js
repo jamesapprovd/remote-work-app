@@ -50,6 +50,7 @@ const WhiteFlags = () => {
         }
       });
     dispatch(ADD_FLAG(newFlag));
+    setFlag({ title: "", content: "" });
   };
 
   return (

@@ -54,8 +54,6 @@ journalRouter.put("/edit", async (req, res) => {
         $set: {
           "workJournal.$.content": req.body.update.content,
           "workJournal.$.title": req.body.update.title,
-          "workJournal.$.date": req.body.update.date,
-          "workJournal.$.time": req.body.update.time,
         },
       }
     );
