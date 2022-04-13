@@ -27,23 +27,24 @@ export const userSlice = createSlice({
         content: action.payload.content,
         comments: action.payload.comments,
       };
-      state.workJournal.push(newJournal);
+      state.workJournal.push(newJournal); //this will push the new journal into the array of workjournal
     },
 
     REMOVE_JOURNAL: (state, action) => {
       const filteredJournals = state.workJournal.filter(
         (journal) => journal.journalId !== action.payload
       );
-      state.workJournal = filteredJournals;
+      state.workJournal = filteredJournals; //this will update the state after filtering out the selected journal
     },
 
     EDIT_JOURNAL: (state, action) => {
       const index = state.workJournal.findIndex(
         (journal) => journal.journalId === action.payload.journalId
       );
-      console.log(action.payload);
+      //find the index of the selected journal
       state.workJournal[index].title = action.payload.update.title;
       state.workJournal[index].content = action.payload.update.content;
+      //change the value of the selected values
     },
 
     ADD_FLAG: (state, action) => {
@@ -58,11 +59,6 @@ export const userSlice = createSlice({
       };
       state.whiteFlag.push(newFlag);
     },
-
-    // tried to add all journals data but not very sure how to do it
-    // ALL_JOURNALS(state, action) {
-    //   state.allJournals = action.payload;
-    // },
 
     EDIT_FLAG: (state, action) => {
       const index = state.whiteFlag.findIndex(
@@ -109,13 +105,15 @@ export const {
   ADD_FLAG,
   REMOVE_FLAG,
   EDIT_FLAG,
-  // ALL_JOURNALS,
   NEW_COMMENT,
   DEL_COMMENT,
 } = userSlice.actions;
+//exports the redux actions
 
 export const selectUser = (state) => state.user.user;
 export const selectWorkJournal = (state) => state.user.workJournal;
 export const selectWhiteFlag = (state) => state.user.whiteFlag;
+//exports the states
 
 export default userSlice.reducer;
+//exports the reducer

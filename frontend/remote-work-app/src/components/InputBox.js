@@ -12,11 +12,7 @@ const InputBox = (props) => {
       });
     }
   };
-  // const onChangeTitle = (event) => {
-  //   props.setJournal((prevState) => {
-  //     return { ...prevState, title: event.target.value };
-  //   });
-  // };
+
   const onChangeContent = (event) => {
     if (props.setJournal) {
       props.setJournal((prevState) => {
@@ -29,13 +25,15 @@ const InputBox = (props) => {
     }
   };
 
+  //the if else is to cater to change of the input box of either the journal or whiteflag
+
   return (
-    <div className="m-4 p-4 border-2 rounded-md">
+    <div className="m-4 p-4 border-2 border-grey rounded-md">
       <form onSubmit={props.onSubmit}>
-        <label>Enter a new Entry:</label>
+        <label className="text-grey">Enter a new Entry:</label>
         <div className="flex flex-col w-auto">
           <input
-            className="bg-lightgreen border focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
+            className="bg-lightgreen border border-grey focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
             type="text"
             placeholder="title"
             onChange={onChangeTitle}
@@ -43,7 +41,7 @@ const InputBox = (props) => {
             value={props.title}
           />
           <textarea
-            className="bg-lightgreen border focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
+            className="bg-lightgreen border border-grey focus:outline-green rounded-sm p-1 flex basis-1/6 m-2 text-center"
             rows="5"
             placeholder="description"
             onChange={onChangeContent}

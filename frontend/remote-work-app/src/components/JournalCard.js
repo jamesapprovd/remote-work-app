@@ -19,8 +19,8 @@ const JournalCard = (props) => {
     setHasViewed(true);
   };
 
-  const user = useSelector(selectUser);
-  const workJournal = useSelector(selectWorkJournal);
+  const user = useSelector(selectUser); // gets current user state from userSlice
+  const workJournal = useSelector(selectWorkJournal); //gets current user journal from userSlice
   const dispatch = useDispatch();
 
   const handleDelete = (event) => {
