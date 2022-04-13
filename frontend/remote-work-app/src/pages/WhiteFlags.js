@@ -73,7 +73,10 @@ const WhiteFlags = () => {
               <span className="pl-4 self-start font-bold text-2xl text-green drop-shadow-md">
                 White Flags
               </span>
+
               <div className="shadow-inner shadow-green m-2">
+                <br />
+                <h3>All White Flags will be posted anonymously</h3>
                 <WhiteFlagCard index={index} setIndex={setIndex} />
               </div>
             </div>

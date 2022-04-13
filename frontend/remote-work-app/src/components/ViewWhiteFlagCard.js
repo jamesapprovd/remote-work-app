@@ -15,7 +15,6 @@ const ViewWhiteFlagCard = (props) => {
   const [hasEdit, setHasEdit] = useState(false);
 
   const user = useSelector(selectUser);
-
   let whiteFlagData = user.whiteFlag[props.index];
 
   // this changes the view from individual white flag to all white flags
@@ -27,10 +26,10 @@ const ViewWhiteFlagCard = (props) => {
   const handleEdit = (event) => {
     event.preventDefault();
     setWhiteFlag((prevState) => {
-      return { ...prevState, title: whiteFlag.title }; //To discuss with @Sharlyn
+      return { ...prevState, title: whiteFlagData.title };
     });
     setWhiteFlag((prevState) => {
-      return { ...prevState, content: whiteFlag.content };
+      return { ...prevState, content: whiteFlagData.content };
     });
     setHasEdit(true);
   };
