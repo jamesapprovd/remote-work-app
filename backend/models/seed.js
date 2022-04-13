@@ -24,20 +24,20 @@ const seedUsersData = [
         date: "06/04/2022",
         time: "20:45:32",
         title: "Logos Creation",
-        content: "I created a few awesome logos for the company!",
+        content: "I created a few logos for the company!",
         private: true,
         comments: [
           {
             username: "Sing Hian",
             date: "06/04/2022",
             time: "20:46:21",
-            comment: "Nicely done, boss!",
+            comment: "Nicely done!",
           },
           {
             username: "Sharlyn",
             date: "06/04/2022",
             time: "20:47:22",
-            comment: "Awesome, boss!",
+            comment: "Awesome!",
           },
         ],
       },
@@ -46,31 +46,33 @@ const seedUsersData = [
         journalId: "2",
         date: "07/04/2022",
         time: "09:30:00",
-        title: "Punctuality",
-        content: "Reached campus on time and got my coffee!",
+        title: "App troubleshooting",
+        content: "Troubleshooting the white flag app functionality - it works",
         private: false,
         comments: [
           {
             username: "Sing Hian",
             date: "07/04/2022",
             time: "09:35:12",
-            comment: "Great work, boss!",
+            comment: "Great work!",
           },
           {
             username: "Sharlyn",
             date: "07/04/2022",
             time: "09:38:53",
-            comment: "Yay, boss!",
+            comment: "Glad we fixed that!",
           },
         ],
       },
     ],
     whiteFlag: [
       {
+        whiteFlagId: 001,
         date: "06/04/2022",
         time: "19:01:09",
-        title: "Need help with day 7 homework!",
-        content: "Why doesn't my create work in postman?",
+        title: "Backend servers not connecting",
+        content:
+          "Why doesn't the backend server connect despite multiple tries?",
         isSolved: false,
         comments: [
           {
@@ -101,20 +103,20 @@ const seedUsersData = [
         date: "06/04/2022",
         time: "20:56:40",
         title: "React",
-        content: "I created routes and pages!",
+        content: "Created routes and pages",
         private: true,
         comments: [
           {
             username: "James",
             date: "06/04/2022",
             time: "21:00:29",
-            comment: "Yay! Nicely done, Sing Hian",
+            comment: "Nicely done, Sing Hian",
           },
           {
             username: "Sharlyn",
             date: "06/04/2022",
             time: "21:02:30",
-            comment: "Yay! It fits the theme",
+            comment: "It fits the theme, well done",
           },
         ],
       },
@@ -144,6 +146,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
+        whiteFlagId: 002,
         date: "06/04/2022",
         time: "19:01:03",
         title: "Help!",
@@ -179,7 +182,7 @@ const seedUsersData = [
         date: "06/04/2022",
         time: "20:45:59",
         title: "Userflow wireframes",
-        content: "Wireframes done and presented to GA",
+        content: "Wireframes done and presented to client",
         private: true,
         comments: [
           {
@@ -192,7 +195,7 @@ const seedUsersData = [
             username: "James",
             date: "07/04/2022",
             time: "12:55:35",
-            comment: "It seems like Desmond and gang likes the design too",
+            comment: "It seems like client loves the design",
           },
         ],
       },
@@ -201,8 +204,8 @@ const seedUsersData = [
         journalId: "6",
         date: "07/04/2022",
         time: "15:30:10",
-        title: "Efficiency",
-        content: "Finished the main page component",
+        title: "Main Page Components",
+        content: "Finished all components on the main page",
         private: false,
         comments: [
           {
@@ -222,10 +225,12 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
+        whiteFlagId: 003,
         date: "07/04/2022",
         time: "18:00:04",
-        title: "Laptop monitor too small",
-        content: "How can I increase my work productivity?",
+        title: "Require additional resource for Design team",
+        content:
+          "We need more resources for the design team to meet our KPIs for Q2 2022",
         isSolved: false,
         comments: [
           {
@@ -288,6 +293,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
+        whiteFlagId: 004,
         date: "07/04/2022",
         time: "18:00:13",
         title: "Component C",
@@ -355,6 +361,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
+        whiteFlagId: 005,
         date: "08/04/2022",
         time: "18:00:04",
         title: "Component F",
@@ -418,6 +425,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
+        whiteFlagId: 006,
         date: "07/04/2022",
         time: "18:00:39",
         title: "Design Theme",
@@ -482,6 +490,7 @@ const seedUsersData = [
     ],
     whiteFlag: [
       {
+        whiteFlagId: 007,
         date: "08/04/2022",
         time: "00:59:06",
         title: "Marketing strategy",
