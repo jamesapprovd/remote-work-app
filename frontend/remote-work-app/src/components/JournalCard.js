@@ -34,10 +34,8 @@ const JournalCard = (props) => {
         journalId,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5", res.data);
+          console.log(res.data);
         }
       });
     dispatch(REMOVE_JOURNAL(journalId));

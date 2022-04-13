@@ -11,7 +11,6 @@ const AllJournalsCard = (props) => {
   const [allJournals, setAllJournals] = useState([]);
 
   const handleView = (event) => {
-    console.log();
     props.setIndex(event.target.parentNode.id);
     setHasViewed(true);
   };

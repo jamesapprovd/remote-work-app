@@ -52,14 +52,11 @@ const ViewJournalCard = (props) => {
         update,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5", res.data);
+          console.log(res.data);
         }
       });
     dispatch(EDIT_JOURNAL({ journalId, update }));
-    console.log("hi2");
     setHasEdit(false);
   };
 
@@ -82,10 +79,8 @@ const ViewJournalCard = (props) => {
         newComment,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5", res.data);
+          console.log(res.data);
         }
       });
     dispatch(NEW_COMMENT({ newComment, selectedJournalId }));

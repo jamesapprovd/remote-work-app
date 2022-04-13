@@ -12,15 +12,15 @@ const buttonStyle =
 const WhiteFlagCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
   // const [isResolved, setIsResolved] = useState(false);
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-  //**** you are not rendering the white flags from the whiteflag state. */
-  const whiteFlag = useSelector(selectWhiteFlag);
-  //**** */
+
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id); //console.log to see
     setHasViewed(true);
   };
+
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const whiteFlag = useSelector(selectWhiteFlag); // this gets the current user's whiteflags from userSlice
 
   const handleDelete = (event) => {
     event.preventDefault();
@@ -33,14 +33,10 @@ const WhiteFlagCard = (props) => {
         whiteFlagId,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5 whiteflag", res.data);
+          console.log(res.data);
         }
       });
-    console.log(userId);
-    console.log(whiteFlagId);
     dispatch(REMOVE_FLAG(whiteFlagId));
   };
 

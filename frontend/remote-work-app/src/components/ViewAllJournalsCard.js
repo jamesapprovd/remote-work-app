@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { NEW_COMMENT_MAIN } from "../redux/usersDataSlice";
 import { v4 as uuidv4 } from "uuid";
 import CommentInputBox from "./CommentInputBox";
-import axios from "axios";
-import { selectUser, NEW_COMMENT, DEL_COMMENT } from "../redux/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
 
 const buttonStyle =
-  "text-sm bg-green border-2 border-green rounded-md hover:border-purple hover:text-black mt-2 ml-2 px-1";
+  "self-end text-sm bg-green border-2 border-green rounded-md hover:border-purple hover:text-black mt-2 ml-2 px-1";
+//button css
 
 const ViewAllJournalsCard = (props) => {
   let journalData = props.allJournals[props.index].workJournal;
@@ -16,18 +15,13 @@ const ViewAllJournalsCard = (props) => {
     props.setHasViewed(false);
   };
 
-  //del
+  // del // not functioning at the moment
   const user = useSelector(selectUser);
-  // const selectedJournalId = journalData.journalId;
-  // const selectedJournalUser = journalData.author;
-  const dispatch = useDispatch();
   const onClickDel = (e) => {
     e.preventDefault();
-    // const commentId = e.target.value;
-    // dispatch(DEL_COMMENT({ selectedJournalId, commentId }));
   };
 
-  //newcomment
+  //new comment // currently only pushes to state, not saving
   const [comment, setComment] = useState("");
   const onChangeComment = (e) => setComment(e.target.value);
   const onSubmitComment = (e) => {
@@ -40,21 +34,6 @@ const ViewAllJournalsCard = (props) => {
       comment: comment,
     };
     journalData.comments.push(newComment);
-    // axios
-    //   .post(`http://127.0.0.1:5001/comments/new`, {
-    //     selectedJournalId,
-    //     newComment,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     console.log(res.data.status);
-    //     if (res.data.status === "ok") {
-    //       console.log("hi5", res.data);
-    //     }
-    //   });
-    // dispatch(
-    //   NEW_COMMENT_MAIN({ newComment, selectedJournalId, selectedJournalUser })
-    // );
     setComment("");
   };
 

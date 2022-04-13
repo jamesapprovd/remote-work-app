@@ -64,7 +64,6 @@ export const userSlice = createSlice({
       const index = state.whiteFlag.findIndex(
         (flag) => flag.whiteFlagId === action.payload.whiteFlagId
       );
-      console.log(action.payload);
       state.whiteFlag[index].title = action.payload.editedWhiteFlag.title;
       state.whiteFlag[index].content = action.payload.editedWhiteFlag.content;
     },

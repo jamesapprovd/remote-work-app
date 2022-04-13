@@ -5,7 +5,6 @@ import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
-import logo from "../images/Logo.png";
 import EmployeeCard from "../components/EmployeeCard";
 
 const Profile = () => {
@@ -32,7 +31,7 @@ const Profile = () => {
           <div className="basis-5/6 p-4 flex flex-row justify-evenly">
             <div className="flex flex-col basis-1/2 border-t border-purple p-2">
               <span className="pl-4 self-start font-bold text-2xl text-purple drop-shadow-md">
-                Work Journals
+                Work Journals ✍
               </span>
               <div className="shadow-inner shadow-purple m-2">
                 <JournalCard index={index} setIndex={setIndex} />
