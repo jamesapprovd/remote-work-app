@@ -37,7 +37,6 @@ const ViewJournalCard = (props) => {
   let journalData = workJournal[props.index];
   const dispatch = useDispatch();
 
-  // this is not working yet, doesn't update anything
   const handleUpdate = (event) => {
     event.preventDefault();
     let userId = user.userId;
@@ -68,15 +67,27 @@ const ViewJournalCard = (props) => {
   const [comment, setComment] = useState("");
   const selectedJournalId = journalData.journalId;
   const onChangeComment = (e) => setComment(e.target.value);
+  const newComment = {
+    commentId: uuidv4(),
+    username: user.username,
+    date: new Date().toLocaleDateString(),
+    time: new Date().toLocaleTimeString(),
+    comment: comment,
+  };
   const onSubmitComment = (e) => {
     e.preventDefault();
-    const newComment = {
-      commentId: uuidv4(),
-      username: user.username,
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
-      comment: comment,
-    };
+    axios
+      .post(`http://127.0.0.1:5001/comments/new`, {
+        selectedJournalId,
+        newComment,
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.status);
+        if (res.data.status === "ok") {
+          console.log("hi5", res.data);
+        }
+      });
     dispatch(NEW_COMMENT({ newComment, selectedJournalId }));
     setComment("");
   };

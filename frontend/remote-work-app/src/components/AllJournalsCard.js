@@ -17,7 +17,7 @@ const AllJournalsCard = (props) => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5001/workJournal/all").then((res) => {
+    axios.get("http://127.0.0.1:5001/workJournal/all").then((res) => {
       const data = res.data;
       setAllJournals(data);
     });
