@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
-import { selectUser } from "../redux/userSlice";
+import { selectUser, REMOVE_FLAG } from "../redux/userSlice";
 import ViewWhiteFlagCard from "./ViewWhiteFlagCard";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const buttonStyle =
   "text-sm bg-green border-2 border-green rounded-md hover:border-purple hover:text-black mt-2 ml-2 px-1";
@@ -11,21 +13,32 @@ const WhiteFlagCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
   // const [isResolved, setIsResolved] = useState(false);
   const user = useSelector(selectUser);
-  console.log(user);
+  const dispatch = useDispatch();
 
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id); //console.log to see
     setHasViewed(true);
   };
 
-  // const handleDelete = () => {
-  //   event.preventDefault();
-  //   axios.post(`http://127.0.0.1:5001/whiteflags/delete` {
-  //     title: title,
-  //     description: description,
-  //   });
-  // };
-  // to be discussed how to link front end to back end
+  const handleDelete = (event) => {
+    event.preventDefault();
+    let userId = user.userId;
+    let whiteFlagId =
+      user.whiteFlag[event.target.parentNode.parentNode.id].whiteFlagId;
+    axios
+      .post(`http://127.0.0.1:5001/whiteflags/delete`, {
+        userId,
+        whiteFlagId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.status);
+        if (res.data.status === "ok") {
+          console.log("hi5 whiteflag", res.data);
+        }
+      });
+    dispatch(REMOVE_FLAG(whiteFlagId));
+  };
 
   return (
     <>
@@ -44,7 +57,7 @@ const WhiteFlagCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className="flex flex-col bg-lightgreen rounded-md m-4 p-2" //want to make it white instead of purple
+                className="flex flex-col bg-lightgreen rounded-md m-4 p-2"
               >
                 <p className="text-sm">
                   {element.date}, {element.time}
@@ -67,10 +80,7 @@ const WhiteFlagCard = (props) => {
                   >
                     Resolve
                   </button>
-                  <button
-                    className={buttonStyle}
-                    // onClick={handleDelete}
-                  >
+                  <button className={buttonStyle} onClick={handleDelete}>
                     Del
                   </button>
                 </div>

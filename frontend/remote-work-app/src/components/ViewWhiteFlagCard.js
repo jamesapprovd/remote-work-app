@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import EditForm from "./EditForm.js";
-import { selectUser } from "../redux/userSlice";
-import { useSelector } from "react-redux";
+import { selectUser, NEW_COMMENT, DEL_COMMENT } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import CommentInputBox from "./CommentInputBox.js";
 
 const buttonStyle =
   "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
@@ -15,7 +16,7 @@ const ViewWhiteFlagCard = (props) => {
   const [hasEdit, setHasEdit] = useState(false);
 
   const user = useSelector(selectUser);
-
+  const dispatch = useDispatch();
   let whiteFlagData = user.whiteFlag[props.index];
 
   // this changes the view from individual white flag to all white flags
@@ -27,19 +28,43 @@ const ViewWhiteFlagCard = (props) => {
   const handleEdit = (event) => {
     event.preventDefault();
     setWhiteFlag((prevState) => {
-      return { ...prevState, title: whiteFlag.title }; //To discuss with @Sharlyn
+      return { ...prevState, title: whiteFlagData.title };
     });
     setWhiteFlag((prevState) => {
-      return { ...prevState, content: whiteFlag.content };
+      return { ...prevState, content: whiteFlagData.content };
     });
     setHasEdit(true);
   };
 
-  // Resolving White Flags - this is not working yet
+  // Resolving White Flags - this has not been built
   //   const handleResolved = (event) => {
   //     event.preventDefault();
   //     setIsResolved(false);
   //   };
+
+  //add comment to white flag
+  const [comment, setComment] = useState("");
+  const selectedWhiteFlagId = whiteFlagData.whiteFlagId; //need to change backend to add this whiteFlagID
+  const onChangeComment = (event) => setComment(event.target.value);
+  const onSubmitComment = (event) => {
+    event.preventDefault();
+    const newComment = {
+      commentId: uuidv4(),
+      username: user.username,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+      comment: comment,
+    };
+    dispatch(NEW_COMMENT({ newComment, selectedWhiteFlagId }));
+    setComment("");
+  };
+
+  //delete comment from white flag
+  const onClickDel = (e) => {
+    e.preventDefault();
+    const commentId = e.target.value;
+    dispatch(DEL_COMMENT({ selectedWhiteFlagId, commentId })); //need to change backend to add this whiteFlagID
+  };
 
   return (
     <>
@@ -71,9 +96,26 @@ const ViewWhiteFlagCard = (props) => {
                     {element.date}, {element.time}
                   </p>
                   <br />
+                  {user.username === element.username ? (
+                    <button
+                      value={element.commentId}
+                      onClick={onClickDel}
+                      className={buttonStyle}
+                    >
+                      Del
+                    </button>
+                  ) : (
+                    ""
+                  )}
                 </div>
               );
             })}
+            <CommentInputBox
+              whiteFlagData={whiteFlagData}
+              comment={comment}
+              onChangeComment={onChangeComment}
+              onSubmitComment={onSubmitComment}
+            />
             <button className={buttonStyle} onClick={handleClose}>
               Close
             </button>
