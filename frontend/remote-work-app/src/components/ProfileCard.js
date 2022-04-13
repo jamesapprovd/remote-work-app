@@ -54,6 +54,7 @@ const ProfileCard = () => {
         }
       });
     dispatch(ADD_JOURNAL(newJournal));
+    setJournal({ title: "", content: "" });
   };
 
   // not sure how the axios syntax work, haven't installed axios yet

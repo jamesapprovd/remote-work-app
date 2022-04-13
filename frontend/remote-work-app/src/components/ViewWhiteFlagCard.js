@@ -15,10 +15,8 @@ import CommentInputBox from "./CommentInputBox.js";
 const buttonStyle =
   "text-sm bg-green border-2 border-green rounded-md hover:border-purple hover:text-black mt-2 ml-2 px-1";
 const ViewWhiteFlagCard = (props) => {
-  const [whiteFlag, setWhiteFlag] = useState({
-    title: "",
-    content: "",
-  });
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [hasEdit, setHasEdit] = useState(false);
 
   const user = useSelector(selectUser);
@@ -34,12 +32,8 @@ const ViewWhiteFlagCard = (props) => {
   // this shows view for edit with default value
   const handleEdit = (event) => {
     event.preventDefault();
-    setWhiteFlag((prevState) => {
-      return { ...prevState, title: whiteFlagData.title };
-    });
-    setWhiteFlag((prevState) => {
-      return { ...prevState, content: whiteFlagData.content };
-    });
+    setTitle(whiteFlagData.title);
+    setContent(whiteFlagData.content);
     setHasEdit(true);
   };
 
@@ -49,8 +43,8 @@ const ViewWhiteFlagCard = (props) => {
     let userId = user.userId;
     let whiteFlagId = whiteFlagData.whiteFlagId;
     let editedWhiteFlag = {
-      title: whiteFlag.title,
-      content: whiteFlag.content,
+      title: title,
+      content: content,
     };
     axios
       .put(`http://127.0.0.1:5001/whiteFlags/edit`, {
@@ -65,7 +59,7 @@ const ViewWhiteFlagCard = (props) => {
           console.log("hi5 comment updated", res.data);
         }
       });
-    // dispatch(EDIT_FLAG({ whiteFlagId, editedWhiteFlag }));
+    dispatch(EDIT_FLAG({ whiteFlagId, editedWhiteFlag }));
     console.log("hi2");
     setHasEdit(false);
   };
@@ -98,9 +92,10 @@ const ViewWhiteFlagCard = (props) => {
     <>
       {hasEdit ? (
         <EditForm
-          title={whiteFlag.title}
-          content={whiteFlag.content}
-          setWhiteFlag={setWhiteFlag}
+          title={title}
+          content={content}
+          setTitle={setTitle}
+          setContent={setContent}
           onSubmit={handleUpdate}
         />
       ) : (
