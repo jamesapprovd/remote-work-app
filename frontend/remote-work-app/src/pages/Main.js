@@ -4,7 +4,6 @@ import EmployeeColumn from "../components/EmployeeColumn";
 import { selectUser } from "../redux/userSlice";
 import { useSelector } from "react-redux";
 import EmployeeCard from "../components/EmployeeCard";
-import logo from "../images/Logo.png";
 import AllJournalsCard from "../components/AllJournalsCard";
 import AllWhiteFlagsCard from "../components/AllWhiteFlagsCard";
 
@@ -33,7 +32,7 @@ const Main = () => {
               <span className="pl-4 self-start font-bold text-2xl text-purple drop-shadow-md">
                 Work Journals
               </span>
-              <div className="shadow-inner shadow-purple m-2">
+              <div className="shadow-inner rounded-md shadow-purple m-2">
                 <AllJournalsCard index={index} setIndex={setIndex} />
               </div>
             </div>
@@ -41,7 +40,7 @@ const Main = () => {
               <span className="pl-4 self-start font-bold text-2xl text-green drop-shadow-md">
                 White Flags
               </span>
-              <div className="shadow-inner shadow-green m-2">
+              <div className="shadow-inner shadow-green rounded-md m-2">
                 <AllWhiteFlagsCard index={index} setIndex={setIndex} />
               </div>
             </div>

@@ -5,8 +5,6 @@ import WhiteFlags from "./pages/WhiteFlags";
 import Profile from "./pages/Profile";
 import LoginPage from "./pages/LoginPage";
 
-/** shar - changes made on 8/4 to routes made the main page to be a login page and included a navigate to the root directory */
-
 function App() {
   return (
     <>

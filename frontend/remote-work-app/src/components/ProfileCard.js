@@ -7,25 +7,22 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const ProfileCard = () => {
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
   const [journal, setJournal] = useState({
     title: "",
     content: "",
   });
-  const user = useSelector(selectUser);
 
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   let profileImage = user.img;
   let name = user.username;
   let position = user.position;
-  let interactionCount = user.interactionCount;
+  // let interactionCount = user.interactionCount;
 
   const onSubmitJournal = (event) => {
     event.preventDefault();
 
-    // const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
     const newJournal = {
       author: name,
       journalId: uuidv4(),
@@ -47,17 +44,13 @@ const ProfileCard = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5", res.data);
+          console.log(res.data);
         }
       });
     dispatch(ADD_JOURNAL(newJournal));
     setJournal({ title: "", content: "" });
   };
-
-  // not sure how the axios syntax work, haven't installed axios yet
 
   return (
     <>
@@ -68,7 +61,7 @@ const ProfileCard = () => {
         </div>
         <div className="">
           <p>Position: {position}</p>
-          <p>Interaction Count: {interactionCount}</p>
+          {/* <p>Interaction Count: {interactionCount}</p>  */}
         </div>
       </div>
       <InputBox

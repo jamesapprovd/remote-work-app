@@ -5,9 +5,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { LOGOUT } from "../redux/userSlice";
 import logo from "../images/Logo.png";
 
-// added a log out button to the nav bar
-
 const styleLi = "m-5 hover:text-black hover:border-b-2 hover:border-green";
+//css for li
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -15,16 +14,12 @@ const NavBar = () => {
 
   const onClickLogout = (e) => {
     e.preventDefault();
-    console.log("hi");
     axios
       .get("http://localhost:5001/users/logout", {
         withCredentials: true,
-        // headers: { mode: "no-cors" },
       })
       .then((res) => {
-        console.log("hi2");
         if (res.data.status === "ok") {
-          console.log("hi3", res.data);
           dispatch(LOGOUT());
         }
       });

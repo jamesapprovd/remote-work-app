@@ -2,7 +2,9 @@ import React from "react";
 
 const placeholderImg =
   "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png";
+
 const EmployeeCard = (props) => {
+  //to assign color according to status
   let statusColor = "shadow-black";
   if (props.status === "online") {
     statusColor = "shadow-green";

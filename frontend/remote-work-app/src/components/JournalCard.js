@@ -19,8 +19,8 @@ const JournalCard = (props) => {
     setHasViewed(true);
   };
 
-  const user = useSelector(selectUser);
-  const workJournal = useSelector(selectWorkJournal);
+  const user = useSelector(selectUser); // gets current user state from userSlice
+  const workJournal = useSelector(selectWorkJournal); //gets current user journal from userSlice
   const dispatch = useDispatch();
 
   const handleDelete = (event) => {
@@ -34,10 +34,8 @@ const JournalCard = (props) => {
         journalId,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5", res.data);
+          console.log(res.data);
         }
       });
     dispatch(REMOVE_JOURNAL(journalId));

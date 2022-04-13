@@ -43,10 +43,8 @@ const WhiteFlags = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("whiteflag hi5", res.data);
+          console.log(res.data);
         }
       });
     dispatch(ADD_FLAG(newFlag));
@@ -72,12 +70,12 @@ const WhiteFlags = () => {
           <div className="basis-5/6 p-4 flex flex-row justify-evenly">
             <div className="flex flex-col basis-1/2 border-t border-purple p-2">
               <span className="pl-4 self-start font-bold text-2xl text-green drop-shadow-md">
-                White Flags
+                White Flags 🏳️
               </span>
 
               <div className="shadow-inner shadow-green m-2">
                 <br />
-                <h3>All White Flags will be posted anonymously</h3>
+                <h3>All 🏳️ will be posted anonymously</h3>
                 <WhiteFlagCard index={index} setIndex={setIndex} />
               </div>
             </div>

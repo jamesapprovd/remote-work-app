@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { LOGIN } from "../redux/userSlice";
 import { selectUsersData, STORE_DATA } from "../redux/usersDataSlice";
 import axios from "axios";
-// import { current } from "@reduxjs/toolkit";
 import logo from "../images/Logo.png";
 
 const LoginPage = () => {
@@ -22,9 +21,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const users = useSelector(selectUsersData);
 
+  //this fetches the whole data base users to load into the usersDataSlice state upon load
   useEffect(() => {
     axios.get("http://localhost:5001/users/storeddata").then((res) => {
-      console.log(res);
       dispatch(STORE_DATA([...res.data]));
       return;
     });
@@ -32,6 +31,7 @@ const LoginPage = () => {
 
   const onSubmitLogin = (e) => {
     e.preventDefault();
+    // checks the entered credentials to make sure email and password are the same
     axios
       .post(
         "http://localhost:5001/users/login",
@@ -45,6 +45,7 @@ const LoginPage = () => {
               return user;
             }
           });
+          //stores only current user data into a userSlice
           dispatch(
             LOGIN({
               ...currentUser,
@@ -52,7 +53,7 @@ const LoginPage = () => {
           );
           navigate("/main");
         }
-      })
+      }) //axios try catch function to capture the errors
       .catch((err) => alert("Log in failed, invalid credentials", err));
   };
 
@@ -63,7 +64,7 @@ const LoginPage = () => {
           <img className="self-center w-[50%]" src={logo} alt="REMOTR" />
           <form className="self-center w-[300px]" onSubmit={onSubmitLogin}>
             <div className="flex flex-col w-auto">
-              <label className="text-left text-purple">Email</label>
+              <label className="text-left text-purple">Email:</label>
               <input
                 className="border-y border-purple flex basis-1/6 my-2 text-center focus:outline-green focus:bg-lightgreen"
                 type="email"
@@ -73,7 +74,7 @@ const LoginPage = () => {
               />
               <label className="text-left text-purple">Password:</label>
               <input
-                className="border-y border-purple rounded-md flex basis-1/6 my-2 text-center focus:outline-green focus:bg-lightgreen"
+                className="border-y border-purple flex basis-1/6 my-2 text-center focus:outline-green focus:bg-lightgreen"
                 type="password"
                 placeholder="Password"
                 value={password}

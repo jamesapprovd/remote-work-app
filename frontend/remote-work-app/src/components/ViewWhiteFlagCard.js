@@ -53,14 +53,11 @@ const ViewWhiteFlagCard = (props) => {
         editedWhiteFlag,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.status);
         if (res.data.status === "ok") {
-          console.log("hi5 comment updated", res.data);
+          console.log(res.data);
         }
       });
     dispatch(EDIT_FLAG({ whiteFlagId, editedWhiteFlag }));
-    console.log("hi2");
     setHasEdit(false);
   };
 
