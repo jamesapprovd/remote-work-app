@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import EditForm from "./EditForm.js";
-import { selectUser, NEW_COMMENT, DEL_COMMENT } from "../redux/userSlice";
+import {
+  selectUser,
+  selectWhiteFlag,
+  EDIT_FLAG,
+  NEW_COMMENT,
+  DEL_COMMENT,
+} from "../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import CommentInputBox from "./CommentInputBox.js";
 
 const buttonStyle =
@@ -17,7 +24,8 @@ const ViewWhiteFlagCard = (props) => {
 
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  let whiteFlagData = user.whiteFlag[props.index];
+  const whiteFlagRedux = useSelector(selectWhiteFlag);
+  let whiteFlagData = whiteFlagRedux[props.index];
 
   // this changes the view from individual white flag to all white flags
   const handleClose = () => {
@@ -36,15 +44,36 @@ const ViewWhiteFlagCard = (props) => {
     setHasEdit(true);
   };
 
-  // Resolving White Flags - this has not been built
-  //   const handleResolved = (event) => {
-  //     event.preventDefault();
-  //     setIsResolved(false);
-  //   };
+  //this updates the white flag when the "edit" button is clicked
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    let userId = user.userId;
+    let whiteFlagId = whiteFlagData.whiteFlagId;
+    let editedWhiteFlag = {
+      title: whiteFlag.title,
+      content: whiteFlag.content,
+    };
+    axios
+      .put(`http://127.0.0.1:5001/whiteFlags/edit`, {
+        userId,
+        whiteFlagId,
+        editedWhiteFlag,
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.status);
+        if (res.data.status === "ok") {
+          console.log("hi5 comment updated", res.data);
+        }
+      });
+    // dispatch(EDIT_FLAG({ whiteFlagId, editedWhiteFlag }));
+    console.log("hi2");
+    setHasEdit(false);
+  };
 
   //add comment to white flag
   const [comment, setComment] = useState("");
-  const selectedWhiteFlagId = whiteFlagData.whiteFlagId; //need to change backend to add this whiteFlagID
+  const selectedWhiteFlagId = whiteFlagData.whiteFlagId;
   const onChangeComment = (event) => setComment(event.target.value);
   const onSubmitComment = (event) => {
     event.preventDefault();
@@ -73,7 +102,7 @@ const ViewWhiteFlagCard = (props) => {
           title={whiteFlag.title}
           content={whiteFlag.content}
           setWhiteFlag={setWhiteFlag}
-          // onSubmit={handleUpdate}
+          onSubmit={handleUpdate}
         />
       ) : (
         <div className="bg-white text-left">

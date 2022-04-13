@@ -64,6 +64,15 @@ export const userSlice = createSlice({
     //   state.allJournals = action.payload;
     // },
 
+    EDIT_FLAG: (state, action) => {
+      const index = state.whiteFlag.findIndex(
+        (flag) => flag.whiteFlagId === action.payload.whiteFlagId
+      );
+      console.log(action.payload);
+      state.whiteFlag[index].title = action.payload.update.title;
+      state.whiteFlag[index].content = action.payload.update.content;
+    },
+
     REMOVE_FLAG: (state, action) => {
       const filteredFlags = state.whiteFlag.filter(
         (flag) => flag.whiteFlagId !== action.payload
@@ -99,6 +108,7 @@ export const {
   EDIT_JOURNAL,
   ADD_FLAG,
   REMOVE_FLAG,
+  EDIT_FLAG,
   // ALL_JOURNALS,
   NEW_COMMENT,
   DEL_COMMENT,
