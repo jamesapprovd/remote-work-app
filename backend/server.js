@@ -7,6 +7,7 @@ const connectDB = require("./db/db");
 const users = require("./router/users");
 const workJournal = require("./router/journalEntry");
 const whiteFlags = require("./router/whiteFlags");
+const comments = require("./router/comments");
 
 const app = express();
 
@@ -58,6 +59,7 @@ app.use(
 app.use("/users", users);
 app.use("/workJournal", workJournal);
 app.use("/whiteFlags", whiteFlags);
+app.use("/comments", comments);
 
 // seed data //
 
