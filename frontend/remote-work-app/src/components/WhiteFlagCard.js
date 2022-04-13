@@ -78,14 +78,14 @@ const WhiteFlagCard = (props) => {
                   <button className={buttonStyle} onClick={handleView}>
                     View
                   </button>
-                  <button
+                  {/* <button
                     className={buttonStyle}
                     // onClick={resolveWhiteFlag}
                   >
                     Resolve
-                  </button>
+                  </button> */}
                   <button className={buttonStyle} onClick={handleDelete}>
-                    Del
+                    Resolve
                   </button>
                 </div>
               </div>

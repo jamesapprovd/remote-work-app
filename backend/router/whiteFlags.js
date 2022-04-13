@@ -41,9 +41,15 @@ whiteFlagRouter.post("/new", async (req, res) => {
 
 whiteFlagRouter.put("/edit", async (req, res) => {
   await Users.findOneAndUpdate(
-    { whiteFlagId: req.body.whiteFlagId },
     {
-      $set: { whiteFlag: req.body.editedWhiteFlag },
+      whiteFlagId: req.body.whiteFlagId,
+      "whiteFlag.whiteFlagId": req.body.whiteFlagId,
+    },
+    {
+      $set: {
+        "whiteFlag.$.title": req.body.editedWhiteFlag.title,
+        "whiteFlag.$.content": req.body.editedWhiteFlag.content,
+      },
     }
   );
   //   console.log(editFlag);
