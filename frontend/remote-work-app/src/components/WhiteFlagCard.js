@@ -26,7 +26,7 @@ const WhiteFlagCard = (props) => {
     event.preventDefault();
     let userId = user.userId;
     let whiteFlagId =
-      user.whiteFlag[event.target.parentNode.parentNode.id].whiteFlagId;
+      whiteFlag[event.target.parentNode.parentNode.id].whiteFlagId;
     axios
       .post(`http://127.0.0.1:5001/whiteflags/delete`, {
         userId,
@@ -39,6 +39,8 @@ const WhiteFlagCard = (props) => {
           console.log("hi5 whiteflag", res.data);
         }
       });
+    console.log(userId);
+    console.log(whiteFlagId);
     dispatch(REMOVE_FLAG(whiteFlagId));
   };
 

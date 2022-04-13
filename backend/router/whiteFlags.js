@@ -65,12 +65,12 @@ whiteFlagRouter.put("/edit", async (req, res) => {
  */
 // delete //
 
-whiteFlagRouter.delete("/delete", async (req, res) => {
+whiteFlagRouter.post("/delete", async (req, res) => {
   await Users.updateOne(
     {
-      whiteFlagId: req.body.whiteFlagId,
+      userId: req.body.userId,
     },
-    { $pull: { whiteFlag: req.body } }
+    { $pull: { whiteFlag: { whiteFlagId: req.body.whiteFlagId } } }
   );
   res.json({ status: "ok", message: "White flag deleted " });
 });
