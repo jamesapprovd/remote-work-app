@@ -135,7 +135,6 @@ const ViewJournalCard = (props) => {
                     ""
                   )}
                 </div>
-                <br />
               </div>
             );
           })}
