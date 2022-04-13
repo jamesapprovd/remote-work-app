@@ -301,7 +301,7 @@ const seedUsersData = [
         isSolved: false,
         comments: [
           {
-            username: "Sin Hian",
+            username: "Sing Hian",
             date: "07/04/2022",
             time: "18:05:57",
             comment:
@@ -369,7 +369,7 @@ const seedUsersData = [
         isSolved: false,
         comments: [
           {
-            username: "Sin Hian",
+            username: "Sing Hian",
             date: "08/04/2022",
             time: "18:05:50",
             comment: "You can do it in either component D or E",
