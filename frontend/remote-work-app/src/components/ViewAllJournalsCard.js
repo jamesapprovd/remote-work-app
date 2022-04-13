@@ -39,6 +39,7 @@ const ViewAllJournalsCard = (props) => {
       time: new Date().toLocaleTimeString(),
       comment: comment,
     };
+    journalData.comments.push(newComment);
     // axios
     //   .post(`http://127.0.0.1:5001/comments/new`, {
     //     selectedJournalId,

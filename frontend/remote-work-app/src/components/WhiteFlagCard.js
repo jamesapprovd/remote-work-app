@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
-import { selectUser, REMOVE_FLAG } from "../redux/userSlice";
+import { selectUser, REMOVE_FLAG, selectWhiteFlag } from "../redux/userSlice";
 import ViewWhiteFlagCard from "./ViewWhiteFlagCard";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -14,7 +14,9 @@ const WhiteFlagCard = (props) => {
   // const [isResolved, setIsResolved] = useState(false);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
+  //**** you are not rendering the white flags from the whiteflag state. */
+  const whiteFlag = useSelector(selectWhiteFlag);
+  //**** */
   const handleView = (event) => {
     props.setIndex(event.target.parentNode.id); //console.log to see
     setHasViewed(true);
@@ -52,7 +54,7 @@ const WhiteFlagCard = (props) => {
         </>
       ) : (
         <div className="text-left">
-          {user.whiteFlag.map((element, index) => {
+          {whiteFlag.map((element, index) => {
             return (
               <div
                 id={index}
