@@ -15,28 +15,36 @@ const Profile = () => {
 
   return (
     <>
-      <div className="flex flex-row">
-        <div className="flex flex-col basis-1/6 p-2 bg-lilac h-screen">
-          <div className="flex bg-purple-400 h-16">
-            <img className="self-center" src={logo} alt="REMOTR" />
+      <div className="flex flex-col">
+        <NavBar />
+        <div className="flex flex-row basis-5/6">
+          <div className="flex flex-col w-52 p-2 h-screen">
+            <EmployeeCard
+              img={user.img}
+              username={user.username}
+              position={user.position}
+              status={user.status}
+            />
+            <p>Your Team:</p>
+            <EmployeeColumn />
           </div>
-          <EmployeeCard
-            img={user.img}
-            username={user.username}
-            position={user.position}
-            status={user.status}
-          />
-          <p>Your Team:</p>
-          <EmployeeColumn />
-        </div>
-        <div className="flex flex-col basis-5/6">
-          <NavBar />
-          <div className="flex flex-row">
-            <div className="bg-lilac rounded-lg basis-1/2 m-1">
-              <JournalCard index={index} setIndex={setIndex} />
+
+          <div className="basis-5/6 p-4 flex flex-row justify-evenly">
+            <div className="flex flex-col basis-1/2 border-t border-purple p-2">
+              <span className="pl-4 self-start font-bold text-2xl text-purple drop-shadow-md">
+                Work Journals
+              </span>
+              <div className="shadow-inner shadow-purple m-2">
+                <JournalCard index={index} setIndex={setIndex} />
+              </div>
             </div>
-            <div className="bg-lilac rounded-lg basis-1/2 m-1">
-              <ProfileCard />
+            <div className="flex flex-col basis-1/2 border-t border-purple p-2">
+              <span className="pl-4 self-start font-bold text-2xl text-lavender drop-shadow-md">
+                Profile
+              </span>
+              <div className="shadow-inner shadow-lavender m-2">
+                <ProfileCard />
+              </div>
             </div>
           </div>
         </div>

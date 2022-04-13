@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import ViewAllWhiteFlagsCard from "./ViewAllWhiteFlagsCard";
 
 const buttonStyle =
-  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
+  "text-sm bg-green border-2 border-green rounded-md hover:border-purple hover:text-black mt-2 ml-2 px-1";
 
 const AllWhiteFlagsCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
@@ -33,18 +33,20 @@ const AllWhiteFlagsCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className=" flex flex-col shadow-md shadow-purple border border-lavender rounded-lg m-2 p-2"
+                className="flex flex-col bg-lightgreen rounded-lg m-4 p-2"
               >
                 <p className="text-sm">
                   {element.whiteFlag.date}, {element.whiteFlag.time}
                 </p>
-                <p className="font-bold border-b">{element.whiteFlag.title}</p>
-                <p className="text-sm">{element.whiteFlag.content}</p>
-                <p className="font-bold text-[13px] border-y border-lavender">
+                <p className="font-bold border-b py-2">
+                  {element.whiteFlag.title}
+                </p>
+                <p className="text-sm p-4">{element.whiteFlag.content}</p>
+                <p className="py-1 text-center font-bold text-[13px] border-y border-green">
                   Comments ({element.whiteFlag.comments.length})
                 </p>
                 <div
-                  className="flex flex-row-reverse justify-between"
+                  className="flex flex-row-reverse justify-between px-4"
                   id={index}
                 >
                   <button className={buttonStyle} onClick={handleView}>

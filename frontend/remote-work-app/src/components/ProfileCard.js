@@ -60,13 +60,12 @@ const ProfileCard = () => {
 
   return (
     <>
-      <div className="flex flex-row my-16">
-        <div className="basis-1/3 ml-20">
+      <div className="w-auto flex flex-col rounded-md m-4 p-2">
+        <p className="font-bold text-2xl">{name}</p>
+        <div className=" self-center">
           <img className="h-32 w-32 " src={profileImage} alt={name} />
         </div>
-        <div className="basis-2/3 mr-16">
-          <br />
-          <p className="font-bold">{name}</p>
+        <div className="">
           <p>Position: {position}</p>
           <p>Interaction Count: {interactionCount}</p>
         </div>

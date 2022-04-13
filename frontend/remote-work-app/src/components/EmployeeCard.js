@@ -5,7 +5,7 @@ const placeholderImg =
 const EmployeeCard = (props) => {
   // console.log("employee card", props.username);
   return (
-    <div className="flex flex-row rounded-lg w-auto h-20 bg-lavender p-2 my-1">
+    <div className="flex flex-row rounded-lg w-auto h-22 shadow-md shadow-black border border-lavender p-2 my-1">
       <div className="flex w-16 p-1">
         <img
           className="self-center"
@@ -14,7 +14,7 @@ const EmployeeCard = (props) => {
         />
       </div>
 
-      <div className="text-left basis-3/4">
+      <div className="flex flex-col justify-evenly text-left basis-3/4">
         <p>{props.username}</p>
         <p className="text-xs">{props.position}</p>
         <p className="text-xs">Status:{props.status}</p>

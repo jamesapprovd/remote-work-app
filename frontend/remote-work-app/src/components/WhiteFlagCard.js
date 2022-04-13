@@ -5,7 +5,7 @@ import { selectUser } from "../redux/userSlice";
 import ViewWhiteFlagCard from "./ViewWhiteFlagCard";
 
 const buttonStyle =
-  "text-sm border-2 border-purple rounded-md hover:bg-green hover:text-black mt-2 ml-2 px-1";
+  "text-sm bg-green border-2 border-green rounded-md hover:border-purple hover:text-black mt-2 ml-2 px-1";
 
 const WhiteFlagCard = (props) => {
   const [hasViewed, setHasViewed] = useState(false);
@@ -44,31 +44,34 @@ const WhiteFlagCard = (props) => {
               <div
                 id={index}
                 key={uuidv4()}
-                className="flex flex-col shadow-md shadow-purple border border-lavender rounded-lg m-2 p-2" //want to make it white instead of purple
+                className="flex flex-col bg-lightgreen rounded-md m-4 p-2" //want to make it white instead of purple
               >
                 <p className="text-sm">
                   {element.date}, {element.time}
                 </p>
-                <p className="font-bold border-b">{element.title}</p>
-                <p className="text-sm">{element.content}</p>
-                <p className="font-bold text-[13px] border-y border-lavender">
+                <p className="font-bold border-b py-2">{element.title}</p>
+                <p className="text-sm p-4">{element.content}</p>
+                <p className="font-bold text-center text-[13px] border-y border-green">
                   Comments ({element.comments.length})
                 </p>
-                <div className="flex flex-row-reverse" id={index}>
+                <div
+                  className="flex flex-row-reverse justify-between px-4"
+                  id={index}
+                >
                   <button className={buttonStyle} onClick={handleView}>
-                    View Comments
-                  </button>
-                  <button
-                    className={buttonStyle}
-                    // onClick={handleDelete}
-                  >
-                    Delete Flag
+                    View
                   </button>
                   <button
                     className={buttonStyle}
                     // onClick={resolveWhiteFlag}
                   >
-                    Resolve White Flag
+                    Resolve
+                  </button>
+                  <button
+                    className={buttonStyle}
+                    // onClick={handleDelete}
+                  >
+                    Del
                   </button>
                 </div>
               </div>

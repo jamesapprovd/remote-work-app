@@ -14,8 +14,8 @@ const seedUsersData = [
       "MinionA",
       "MinionB",
     ],
-    img: "",
-    status: "",
+    img: "https://imgur.com/sFFHUjo.png",
+    status: "online",
     interactionCount: 5,
     workJournal: [
       {
@@ -28,12 +28,14 @@ const seedUsersData = [
         private: true,
         comments: [
           {
+            commentId: "1",
             username: "Sing Hian",
             date: "6/4/2022",
             time: "2046",
             comment: "Nicely done, boss!",
           },
           {
+            commentId: "2",
             username: "Sharlyn",
             date: "6/4/2022",
             time: "2047",
@@ -51,12 +53,14 @@ const seedUsersData = [
         private: false,
         comments: [
           {
+            commentId: "3",
             username: "Sing Hian",
             date: "7/4/2022",
             time: "935",
             comment: "Great work, boss!",
           },
           {
+            commentId: "4",
             username: "Sharlyn",
             date: "7/4/2022",
             time: "938",
@@ -91,7 +95,7 @@ const seedUsersData = [
     position: "Chief Technology Officer",
     isManager: true,
     employees: ["Worker1", "Worker2"],
-    img: "",
+    img: "https://imgur.com/vrIXJfV.png",
     status: "online",
     interactionCount: 0,
     workJournal: [
@@ -105,12 +109,14 @@ const seedUsersData = [
         private: true,
         comments: [
           {
+            commentId: "5",
             username: "James",
             date: "6/4/2022",
             time: "2100",
             comment: "Yay! Nicely done, Sing Hian",
           },
           {
+            commentId: "6",
             username: "Sharlyn",
             date: "6/4/2022",
             time: "2102",
@@ -128,12 +134,14 @@ const seedUsersData = [
         private: false,
         comments: [
           {
+            commentId: "7",
             username: "James",
             date: "7/4/2022",
             time: 1002,
             comment: "It's still early, do your work!",
           },
           {
+            commentId: "8",
             username: "Sharlyn",
             date: "7/4/2022",
             time: "1005",
@@ -169,7 +177,7 @@ const seedUsersData = [
     position: "Chief Design Officer",
     isManager: true,
     employees: ["MinionA", "MinionB"],
-    img: "",
+    img: "https://imgur.com/PMV7iX3.png",
     status: "online",
     interactionCount: 0,
     workJournal: [
@@ -183,12 +191,14 @@ const seedUsersData = [
         private: true,
         comments: [
           {
+            commentId: "9",
             username: "Sing Hian",
             date: "7/4/2022",
             time: "1146",
             comment: "That looks really good!",
           },
           {
+            commentId: "10",
             username: "James",
             date: "7/4/2022",
             time: "1255",
@@ -206,12 +216,14 @@ const seedUsersData = [
         private: false,
         comments: [
           {
+            commentId: "11",
             username: "Sing Hian",
             date: "7/4/2022",
             time: "1535",
             comment: "I have something to add",
           },
           {
+            commentId: "12",
             username: "James",
             date: "7/4/2022",
             time: "1546",
@@ -247,7 +259,7 @@ const seedUsersData = [
     position: "Software Developer",
     isManager: false,
     employees: [],
-    img: "",
+    img: "https://imgur.com/tcsgEWd.png",
     status: "offline",
     interactionCount: 2,
     workJournal: [
@@ -261,6 +273,7 @@ const seedUsersData = [
         private: true,
         comments: [
           {
+            commentId: "13",
             username: "Sing Hian",
             date: "7/4/2022",
             time: "1202",
@@ -278,6 +291,7 @@ const seedUsersData = [
         private: false,
         comments: [
           {
+            commentId: "14",
             username: "Sing Hian",
             date: "7/4/2022",
             time: "1735",
@@ -314,8 +328,8 @@ const seedUsersData = [
     position: "Software Engineer",
     isManager: false,
     employees: [],
-    img: "",
-    status: "online",
+    img: "https://imgur.com/2t8EuSI.png",
+    status: "away",
     interactionCount: 3,
     workJournal: [
       {
@@ -328,6 +342,7 @@ const seedUsersData = [
         private: true,
         comments: [
           {
+            commentId: "15",
             username: "Sing Hian",
             date: "8/4/2022",
             time: "1202",
@@ -345,6 +360,7 @@ const seedUsersData = [
         private: false,
         comments: [
           {
+            commentId: "16",
             username: "Sing Hian",
             date: "8/4/2022",
             time: "1735",
@@ -379,7 +395,7 @@ const seedUsersData = [
     position: "UX Designer",
     isManager: false,
     employees: [],
-    img: "",
+    img: "https://imgur.com/uWkrgVJ.png",
     status: "offline",
     interactionCount: 2,
     workJournal: [
@@ -392,6 +408,7 @@ const seedUsersData = [
         private: true,
         comments: [
           {
+            commentId: "17",
             username: "Sharlyn",
             date: "7/4/2022",
             time: "1202",
@@ -408,6 +425,7 @@ const seedUsersData = [
         private: false,
         comments: [
           {
+            commentId: "18",
             username: "Sharlyn",
             date: "7/4/2022",
             time: "1736",
@@ -443,7 +461,7 @@ const seedUsersData = [
     position: "Marketing Manager",
     isManager: false,
     employees: [],
-    img: "",
+    img: "https://imgur.com/FOCoolK.png",
     status: "offline",
     interactionCount: 2,
     workJournal: [
@@ -456,6 +474,7 @@ const seedUsersData = [
         private: true,
         comments: [
           {
+            commentId: "19",
             username: "Sharlyn",
             date: "8/4/2022",
             time: "1212",
@@ -472,6 +491,7 @@ const seedUsersData = [
         private: false,
         comments: [
           {
+            commentId: "20",
             username: "Sharlyn",
             date: "8/4/2022",
             time: "1708",

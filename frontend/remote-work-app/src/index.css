@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans&family=Roboto:wght@300;400&display=swap");
+
 body {
   background-color: white;
   text-align: center;
+  font-family: "Roboto", sans-serif;
 }
 
 button {
