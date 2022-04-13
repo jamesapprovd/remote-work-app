@@ -38,17 +38,20 @@ The planning sketch of the project, pre-build:
 
 ### User Stories
 
-```
+
 The user experience of Remotr is intended to be simple and easy to navigate. Upon login, users immediately see the two key functions of Remotr and on the main page, users will be able to:
 
+```
 - See their entire team (and team member status, colour coded)
 - View all their team members WorkJournals
 - Comment on any WorkJournal
 - View team members White Flags
 - View comments on White Flags
+```
 
 The navigational bar allows each user to click in to the specific function, which will allow a user to:
 
+```
 1.
 - Create a WorkJournal
 - Read / View all WorkJournals created by such user
