@@ -9,8 +9,8 @@ const usersSchema = Schema(
     email: { type: String },
     position: { type: String },
     isManager: { type: Boolean, default: false },
-    employees: [{ type: String }], //TODO: to link the usernames of the employees to their managers who can see their work journals
-    img: { type: String, default: "" }, //add generic image
+    employees: [{ type: String }], //Stretch: to link the usernames of the employees to their managers who can see their work journals
+    img: { type: String, default: "" },
     status: { type: String, default: "offline" },
     interactionCount: { type: Number },
     workJournal: [
@@ -18,7 +18,7 @@ const usersSchema = Schema(
         author: { type: String },
         journalId: { type: String },
         date: { type: String },
-        time: { type: String }, //Apparently, if you save a document with an unset time field, Mongoose will fill in this field with the current time
+        time: { type: String },
         title: { type: String },
         content: { type: String },
         private: { type: Boolean, default: true },

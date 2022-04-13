@@ -64,12 +64,12 @@ export const userSlice = createSlice({
     //   state.allJournals = action.payload;
     // },
 
-    // REMOVE_FLAG: (state, action) => {
-    //   const filteredFlags = state.whiteFlag.filter(
-    //     (flag) => flag.whiteFlagId !== action.payload
-    //   );
-    //   state.whiteFlag = filteredFlags;
-    // },
+    REMOVE_FLAG: (state, action) => {
+      const filteredFlags = state.whiteFlag.filter(
+        (flag) => flag.whiteFlagId !== action.payload
+      );
+      state.whiteFlag = filteredFlags;
+    },
 
     NEW_COMMENT: (state, action) => {
       const newComment = action.payload.newComment;
@@ -98,6 +98,7 @@ export const {
   REMOVE_JOURNAL,
   EDIT_JOURNAL,
   ADD_FLAG,
+  REMOVE_FLAG,
   // ALL_JOURNALS,
   NEW_COMMENT,
   DEL_COMMENT,
